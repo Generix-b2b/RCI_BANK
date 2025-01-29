@@ -1007,7 +1007,7 @@
                                 "type": "object",
                                 "description": "cargo",
                                 "properties": {
-                                  "chargeReason": {
+                                  "ChargeReason": {
                                     "type": "string",
                                     "description": "Concepto por el que se aplica el cargo.",
                                     "maxLength": 2500
@@ -1022,7 +1022,7 @@
                                   }
                                 },
                                 "required": [
-                                  "chargeReason",
+                                  "ChargeReason",
                                   "ChargeAmount"
                                 ]
                               }
@@ -1186,7 +1186,7 @@
                                         "type": "object",
                                         "description": "cargo",
                                         "properties": {
-                                          "chargeReason": {
+                                          "ChargeReason": {
                                             "type": "string",
                                             "description": "Concepto por el que se aplica el cargo.",
                                             "maxLength": 2500

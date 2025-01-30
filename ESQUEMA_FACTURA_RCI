@@ -133,6 +133,11 @@
                           "description": "Dirección. Tipo de vía, nombre, número, piso...",
                           "maxLength": 80
                         },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Dirección. Tipo de vía, nombre, número, piso...",
+                                  "maxLength": 80
+                                },
                         "PostCode": {
                           "type": "string",
                           "description": "Código postal asignado por correos.",
@@ -173,7 +178,7 @@
                           "description": "Teléfono. Número de teléfono completo con prefijos del país.",
                           "maxLength": 15
                         },
-                        "TeleFax": {
+                        "Telephone2": {
                           "type": "string",
                           "description": "Fax. Número de fax completo con prefijos del país.",
                           "maxLength": 15
@@ -283,8 +288,9 @@
         },
         "Invoices": {
           "type": "array",
-          "description": "Facturas CyC",
+          "minItems": 1,
           "maxItems": 100,
+          "description": "Facturas CyC",
           "items": [
             {
               "type": "object",
@@ -349,6 +355,11 @@
                               "description": "Dirección en España.",
                               "properties": {
                                 "Address": {
+                                  "type": "string",
+                                  "description": "Dirección. Tipo de vía, nombre, número, piso...",
+                                  "maxLength": 80
+                                },
+                                "AddressLine": {
                                   "type": "string",
                                   "description": "Dirección. Tipo de vía, nombre, número, piso...",
                                   "maxLength": 80
@@ -458,6 +469,11 @@
                                   "description": "Dirección. Tipo de vía, nombre, número, piso...",
                                   "maxLength": 80
                                 },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Dirección. Tipo de vía, nombre, número, piso...",
+                                  "maxLength": 80
+                                },
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Código postal asignado por correos.",
@@ -498,7 +514,7 @@
                                   "description": "Teléfono. Número de teléfono completo con prefijos del país.",
                                   "maxLength": 15
                                 },
-                                "TeleFax": {
+                                "Telephone2": {
                                   "type": "string",
                                   "description": "Fax. Número de fax completo con prefijos del país.",
                                   "maxLength": 15
@@ -597,6 +613,11 @@
                                   "description": "Dirección. Tipo de vía, nombre, número, piso...",
                                   "maxLength": 80
                                 },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Dirección. Tipo de vía, nombre, número, piso...",
+                                  "maxLength": 80
+                                },
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Código postal asignado por correos.",
@@ -655,6 +676,11 @@
                                   "description": "Dirección. Tipo de vía, nombre, número, piso...",
                                   "maxLength": 80
                                 },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Dirección. Tipo de vía, nombre, número, piso...",
+                                  "maxLength": 80
+                                },
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Código postal asignado por correos.",
@@ -695,7 +721,7 @@
                                   "description": "Teléfono. Número de teléfono completo con prefijos del país.",
                                   "maxLength": 15
                                 },
-                                "TeleFax": {
+                                "Telephone2": {
                                   "type": "string",
                                   "description": "Fax. Número de fax completo con prefijos del país.",
                                   "maxLength": 15
@@ -737,6 +763,7 @@
                 },
                 "Invoice": {
                   "type": "array",
+                  "minItems": 1,
                   "description": "Facturas."
                   "items"[
                     {
@@ -906,6 +933,7 @@
                         },
                         "TaxesOutputs": {
                           "type": "array",
+"minItems": 1,
                           "description": "Impuestos repercutidos.",
                           "items": [
                             {
@@ -973,6 +1001,7 @@
                             },
                             "GeneralDiscounts": {
                               "type": "array",
+"minItems": 1,
                               "description": "Descuentos sobre el Total Importe Bruto. Habrá tantos bloques de campos G",
                               "items": [
                                 {
@@ -1004,6 +1033,7 @@
                             },
                             "GeneralSurcharges": {
                               "type": "array",
+"minItems": 1,
                               "description": "cargos",
                               "items": [
                                 {
@@ -1078,6 +1108,7 @@
                         },
                         "Items": {
                           "type": "array",
+"minItems": 1,
                           "description": "Información detallada.",
                           "items": [
                             {
@@ -1103,6 +1134,7 @@
                                     },
                                     "DeliveryNotesReferences": {
                                       "type": "array",
+"minItems": 1,
                                       "description": "Referencias de albaranes.",
                                       "items": [
                                         {
@@ -1153,6 +1185,7 @@
                                     },
                                     "DiscountsAndRebates": {
                                       "type": "array",
+"minItems": 1,
                                       "description": "Descuentos",
                                       "items": [
                                         {
@@ -1183,6 +1216,7 @@
                                     },
                                     "Charges": {
                                       "type": "array",
+"minItems": 1,
                                       "description": "cargos",
                                       "items": [
                                         {
@@ -1214,6 +1248,7 @@
                                     },
                                     "TaxesOutputs": {
                                       "type": "array",
+"minItems": 1,
                                       "description": "Impuestos repercutidos. Es una secuencia de elementos, cada uno de los cuales contiene la información de un impuesto repercutido.",
                                       "items": [
                                         {
@@ -1307,6 +1342,7 @@
                         },
                         "PaymentDetails": {
                           "type": "array",
+"minItems": 1,
                           "description": "Datos de pago.",
                           "items": [
                             {
@@ -1439,6 +1475,7 @@
                           "properties": {
                             "RelatedDocuments": {
                               "type": "array",
+"minItems": 1,
                               "description": "Documentos asociados. Identificación de documentos Emisor / Receptor.",
                               "items": [
                                 {
@@ -1500,7 +1537,7 @@
                         "Items"
                       ]
                     }
-                  ]
+                  ],
                 }
               },
               "required": [

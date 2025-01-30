@@ -23,6 +23,7 @@
           },
           "AddressInSpain": {
             "Address": "Calle Third Party",
+            "AddressLine": "Edificio Portal Puerta",
             "PostCode": "12345",
             "Town": "Ciudad Third Party",
             "Province": "Provincia TP",
@@ -61,6 +62,7 @@
               "RoleTypeCode": "01",
               "AddressInSpain": {
                 "Address": "Calle del Centro Seller",
+                "AddressLine": "Edificio Portal Puerta",
                 "PostCode": "12345",
                 "Town": "Ciudad Centro Seller",
                 "Province": "Provincia ACS",
@@ -82,6 +84,7 @@
               },
               "AddressInSpain": {
                 "Address": "Calle Seller Party",
+                "AddressLine": "Edificio Portal Puerta",
                 "PostCode": "12345",
                 "Town": "Ciudad Seller Party",
                 "Province": "Provincia SP",
@@ -108,6 +111,7 @@
               "RoleTypeCode": "01",
               "AddressInSpain": {
                 "Address": "Calle del Centro Buyer",
+                "AddressLine": "Edificio Portal Puerta",
                 "PostCode": "12345",
                 "Town": "Ciudad Centro Buyer",
                 "Province": "Provincia ACB",
@@ -119,6 +123,7 @@
               "CorporateName": "Buyer Party",
               "AddressInSpain": {
                 "Address": "Calle Buyer Party",
+                "AddressLine": "Edificio Portal Puerta",
                 "PostCode": "12345",
                 "Town": "Ciudad Buyer Party",
                 "Province": "Provincia BP",

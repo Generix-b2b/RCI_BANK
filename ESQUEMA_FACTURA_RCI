@@ -736,534 +736,68 @@
                   ]
                 },
                 "Invoice": {
-                  "type": "object",
-                  "description": "Factura.",
-                  "properties": {
-                    "InvoiceHeader": {
+                  "type": "array",
+                  "description": "Facturas."
+                  "items"[
+                    {
                       "type": "object",
-                      "description": "Cabecera de factura. Para cada una de las facturas que pueden componer un Lote, recoge datos que determinan inequívocamente cada factura.",
+                      "description": "Factura.",
                       "properties": {
-                        "InvoiceNumber": {
-                          "type": "string",
-                          "description": "Número de factura. Número asignado por el emisor.",
-                          "maxLength": 20
-                        },
-                        "InvoiceDocumentType": {
-                          "type": "string",
-                          "description": "Tipo documento Factura / (FC) = Fsctura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura(DEPRECATED)",
-                          "enum": [
-                            "FC",
-                            "FA",
-                            "AF"
-                          ]
-                        },
-                        "InvoiceClass": {
-                          "type": "string",
-                          "description": "Clase de Factura / (OO) = Original, (OR) = Original Rectificativa, (OC) = Original Recapitulativa, (CO) = Duplicado Original, (CR) = Duplicado Rectificativa, (CC) = Duplicado Recapitulativa",
-                          "enum": [
-                            "OO",
-                            "OR",
-                            "OC",
-                            "CO",
-                            "CR",
-                            "CC"
-                          ]
-                        },
-                        "Corrective": {
+                        "InvoiceHeader": {
                           "type": "object",
-                          "description": "Rectificativa.",
+                          "description": "Cabecera de factura. Para cada una de las facturas que pueden componer un Lote, recoge datos que determinan inequívocamente cada factura.",
                           "properties": {
                             "InvoiceNumber": {
                               "type": "string",
-                              "description": "Número de la factura que se rectifica. Será obligatorio cuando el dato 'CorrectionMethod' (Código del criterio de la rectificación) sea '01' o '02'.",
+                              "description": "Número de factura. Número asignado por el emisor.",
                               "maxLength": 20
                             },
-                            "InvoiceSeriesCode": {
+                            "InvoiceDocumentType": {
                               "type": "string",
-                              "description": "Número de serie de la factura que se rectifica.",
-                              "maxLength": 20
-                            },
-                            "ReasonCode": {
-                              "type": "string",
-                              "description": "Código del motivo. Código numérico del motivo de rectificación. '01' a '16' errores según reglamento RD 1496/2003; '80' a '85' errores según Artº 80 Ley 37/92 de IVA"
-                            },
-                            "ReasonDescription": {
-                              "type": "string",
-                              "description": "Descripción motivo. Descripción del motivo de rectificación y que se corresponde con cada código. Ver tabla de códigos y descripciones"
-                            },
-                            "TaxPeriod": {
-                              "type": "object",
-                              "description": "Período natural en el que se produjeron los efectos fiscales de la factura a rectificar; y, por lo tanto, se tributó, y que ahora, es ojeto de rectificación. ISO 8601:2004.",
-                              "properties": {
-                                "StartDate": {
-                                  "type": "string",
-                                  "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                                },
-                                "EndDate": {
-                                  "type": "string",
-                                  "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                                }
-                              },
-                              "required": [
-                                "StartDate",
-                                "EndDate"
-                              ]
-                            },
-                            "CorrectionMethod": {
-                              "type": "string",
-                              "description": "Código numérico que identifica el criterio empleado en cada caso para una rectificación / '01' - Se reflejan todos los detalles a rectificar de la factura original. '02' - Solo se anotan los detalles ya rectificados. '03' - Rectificación por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
+                              "description": "Tipo documento Factura / (FC) = Fsctura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura(DEPRECATED)",
                               "enum": [
-                                "01",
-                                "02",
-                                "03",
-                                "04"
+                                "FC",
+                                "FA",
+                                "AF"
                               ]
                             },
-                            "CorrectionMethodDescription": {
+                            "InvoiceClass": {
                               "type": "string",
-                              "description": "Descripción del criterio asociada al código indicado en el campo anterior / '01' - Rectificación modelo íntegro. '02' - Rectificación modelo por diferencias. '03' - Rectificación por descuento por volumen de operaciones durante un período. '04' - Autorizadas por la Agencia Tributaria'.",
+                              "description": "Clase de Factura / (OO) = Original, (OR) = Original Rectificativa, (OC) = Original Recapitulativa, (CO) = Duplicado Original, (CR) = Duplicado Rectificativa, (CC) = Duplicado Recapitulativa",
                               "enum": [
-                                "Rectificación modelo íntegro",
-                                "Rectificación modelo por diferencias.",
-                                "Rectificación por descuento por volumen de operaciones durante un período",
-                                "Autorizadas por la Agencia Tributaria"
+                                "OO",
+                                "OR",
+                                "OC",
+                                "CO",
+                                "CR",
+                                "CC"
                               ]
                             },
-                            "AdditionalReasonDescription": {
-                              "type": "string",
-                              "description": "Ampliación motivo de la rectificación. Descripción de las aclaraciones y motivos de la factura Rectificativa",
-                              "maxLength": 2500
-                            },
-                            "InvoiceIssueDate": {
-                              "type": "string",
-                              "description": "Fecha de expedición de la factura rectificada. Valor obligatorio en el supuesto de que la etiqueta CorrectionMethod tome los valores '01' o '02'. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                            }
-                          },
-                          "required": [
-                            "ReasonCode",
-                            "ReasonDescription",
-                            "TaxPeriod",
-                            "CorrectionMethod",
-                            "CorrectionMethodDescription"
-                          ]
-                        }
-                      },
-                      "required": [
-                        "InvoiceNumber",
-                        "InvoiceDocumentType",
-                        "InvoiceClass"
-                      ]
-                    },
-                    "InvoiceIssueData": {
-                      "type": "object",
-                      "description": "Datos de la emisión de la factura.",
-                      "properties": {
-                        "IssueDate": {
-                          "type": "string",
-                          "description": "Fecha de expedición. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                        },
-                        "InvoicingPeriod": {
-                          "type": "object",
-                          "description": "Periodo de facturación. Para más información, leer la documentación.",
-                          "properties": {
-                            "StartDate": {
-                              "type": "string",
-                              "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                            },
-                            "EndDate": {
-                              "type": "string",
-                              "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                            }
-                          },
-                          "required": [
-                            "StartDate",
-                            "EndDate"
-                          ]
-                        },
-                        "InvoiceCurrencyCode": {
-                          "type": "string",
-                          "description": "Moneda de la operación. Código ISO 4217:2001 Alpha-3 de la moneda en la que se emite la factura. Para más información, leer la documentación."
-                        },
-                        "TaxCurrencyCode": {
-                          "type": "string",
-                          "description": "Moneda del impuesto. Código ISO 4217:2001 Alpha-3 de la moneda en la que se liquida el impuesto."
-                        },
-                        "LanguageName": {
-                          "type": "string",
-                          "description": "Lengua. Código ISO 639-1:2002 Alpha-2 de la lengua en la que se emite el documento."
-                        }
-                      },
-                      "required": [
-                        "IssueDate",
-                        "InvoiceCurrencyCode",
-                        "TaxCurrencyCode",
-                        "LanguageName"
-                      ]
-                    },
-                    "TaxesOutputs": {
-                      "type": "array",
-                      "description": "Impuestos repercutidos.",
-                      "items": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "Tax": {
+                            "Corrective": {
                               "type": "object",
-                              "description": "Impuesto.",
+                              "description": "Rectificativa.",
                               "properties": {
-                                "TaxTypeCode": {
+                                "InvoiceNumber": {
                                   "type": "string",
-                                  "description": "Identificador del impuesto por el que se tributa. Para más información, leer la documentación."
-                                },
-                                "TaxRate": {
-                                  "type": "number",
-                                  "description": "Tipo impositivo. Para más información, leer la descripción."
-                                },
-                                "TaxableBase": {
-                                  "type": "object",
-                                  "description": "Base imponible. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
-                                  "properties": {
-                                    "TotalAmount": {
-                                      "type": "number",
-                                      "description": "Importe en la moneda original de la facturación. Para más información, leer la documentación."
-                                    }
-                                  },
-                                  "required": [
-                                    "TotalAmount"
-                                  ]
-                                },
-                                "TaxAmount": {
-                                  "type": "object",
-                                  "description": "Cuota. La legislación del impuesto correspondiente determina cómo se calcula la cuota.",
-                                  "properties": {
-                                    "TotalAmount": {
-                                      "type": "number",
-                                      "description": "Importe en la moneda original de la facturación. Para más información, leer la documentación."
-                                    }
-                                  },
-                                  "required": [
-                                    "TotalAmount"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "TaxTypeCode",
-                                "TaxRate",
-                                "TaxableBase"
-                              ]
-                            }
-                          },
-                          "required": [
-                            "Tax"
-                          ]
-                        }
-                      ]
-                    },
-                    "InvoiceTotals": {
-                      "type": "object",
-                      "description": "Totales de la factura.",
-                      "properties": {
-                        "TotalGrossAmount": {
-                          "type": "number",
-                          "description": "Total Importe Bruto. Suma total de importes brutos de los detalles de la factura."
-                        },
-                        "GeneralDiscounts": {
-                          "type": "array",
-                          "description": "Descuentos sobre el Total Importe Bruto. Habrá tantos bloques de campos G",
-                          "items": [
-                            {
-                              "Discount": {
-                                "type": "object",
-                                "description": "Descuento",
-                                "properties": {
-                                  "DiscountReason": {
-                                    "type": "string",
-                                    "description": "Concepto por el que se aplica descuento.",
-                                    "maxLength": 2500
-                                  },
-                                  "DiscountRate": {
-                                    "type": "number",
-                                    "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
-                                  },
-                                  "DiscountAmount": {
-                                    "type": "number",
-                                    "descontar": "Importe a descontar sobre el TIB."
-                                  }
-                                },
-                                "required": [
-                                  "DiscountReason",
-                                  "DiscountAmount"
-                                ]
-                              }
-                            }
-                          ]
-                        },
-                        "GeneralSurcharges": {
-                          "type": "array",
-                          "description": "cargos",
-                          "items": [
-                            {
-                              "Charge": {
-                                "type": "object",
-                                "description": "cargo",
-                                "properties": {
-                                  "ChargeReason": {
-                                    "type": "string",
-                                    "description": "Concepto por el que se aplica el cargo.",
-                                    "maxLength": 2500
-                                  },
-                                  "ChargeRate": {
-                                    "type": "number",
-                                    "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
-                                  },
-                                  "ChargeAmount": {
-                                    "type": "number",
-                                    "description": "Importe a cargar sobre el TIB."
-                                  }
-                                },
-                                "required": [
-                                  "ChargeReason",
-                                  "ChargeAmount"
-                                ]
-                              }
-                            }
-                          ]
-                        },
-                        "TotalGeneralDiscounts": {
-                          "type": "number",
-                          "description": "Total general de descuentos. Sumatorio de los importes de los diferentes campos GeneralDiscounts"
-                        },
-                        "TotalGeneralSurcharges": {
-                          "type": "number",
-                          "description": "Total general de cargos. Sumatorio de los importes de los diferentes campos GeneralSurcharges"
-                        },
-                        "TotalGrossAmountBeforeTaxes": {
-                          "type": "number",
-                          "description": "Total importe bruto antes de impuestos.  Resultado de: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges."
-                        },
-                        "TotalTaxOutputs": {
-                          "type": "number",
-                          "description": "Total impuestos repercutidos. Sumatorio de todas las Cuotas y Recargos de Equivalencia."
-                        },
-                        "TotalTaxesWithheld": {
-                          "type": "number",
-                          "description": "Total impuestos retenidos. Para más información, leer la documentación."
-                        },
-                        "InvoiceTotal": {
-                          "type": "number",
-                          "description": "Total factura. Para más información, leer la documentación."
-                        },
-                        "TotalOutstandingAmount": {
-                          "type": "number",
-                          "description": "Total a pagar. Para más información, leer la documentación."
-                        },
-                        "TotalExecutableAmount": {
-                          "type": "number",
-                          "description": "Total a ejecutar. Para más información, leer la documentación."
-                        }
-                      },
-                      "required": [
-                        "TotalGrossAmount",
-                        "TotalGrossAmountBeforeTaxes",
-                        "TotalTaxOutputs",
-                        "TotalTaxesWithheld",
-                        "InvoiceTotal",
-                        "TotalOutstandingAmount",
-                        "TotalExecutableAmount"
-                      ]
-                    },
-                    "Items": {
-                      "type": "array",
-                      "description": "Información detallada.",
-                      "items": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "InvoiceLine": {
-                              "type": "object",
-                              "description": "Líneas de detalle de la factura.",
-                              "properties": {
-                                "IssuerContractReference": {
-                                  "type": "string",
-                                  "description": "Referencia del contrato del Emisor.",
+                                  "description": "Número de la factura que se rectifica. Será obligatorio cuando el dato 'CorrectionMethod' (Código del criterio de la rectificación) sea '01' o '02'.",
                                   "maxLength": 20
                                 },
-                                "IssuerTransactionReference": {
+                                "InvoiceSeriesCode": {
                                   "type": "string",
-                                  "description": "Referencia de la Operación, Número de Pedido, Contrato, etc. del Emisor.",
+                                  "description": "Número de serie de la factura que se rectifica.",
                                   "maxLength": 20
                                 },
-                                "SequenceNumber": {
-                                  "type": "number",
-                                  "description": "Número de secuencia o línea de pedido."
-                                },
-                                "DeliveryNotesReferences": {
-                                  "type": "array",
-                                  "description": "Referencias de albaranes.",
-                                  "items": [
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "DeliveryNote": {
-                                          "type": "object",
-                                          "description": "Información del albarán.",
-                                          "properties": {
-                                            "DeliveryNoteNumber": {
-                                              "type": "string",
-                                              "description": "Número de referencia del albarán.",
-                                              "maxLength": 30
-                                            },
-                                            "DeliveryNoteDate": {
-                                              "type": "string",
-                                              "description": "Fecha del albarán. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                                            }
-                                          },
-                                          "required": [
-                                            "DeliveryNoteNumber"
-                                          ]
-                                        }
-                                      }
-                                    }
-                                  ]
-                                },
-                                "ItemDescription": {
+                                "ReasonCode": {
                                   "type": "string",
-                                  "description": "Descripción del bien o servicio.",
-                                  "maxLength": 2500
+                                  "description": "Código del motivo. Código numérico del motivo de rectificación. '01' a '16' errores según reglamento RD 1496/2003; '80' a '85' errores según Artº 80 Ley 37/92 de IVA"
                                 },
-                                "Quantity": {
-                                  "type": "integer",
-                                  "description": "Cantidad. Número de Unidades servidas/prestadas."
-                                },
-                                "UnitOfMeasure": {
+                                "ReasonDescription": {
                                   "type": "string",
-                                  "description": "Unidad en que está referida la Cantidad. Para más información, leer la documentación."
+                                  "description": "Descripción motivo. Descripción del motivo de rectificación y que se corresponde con cada código. Ver tabla de códigos y descripciones"
                                 },
-                                "UnitPriceWithoutTax": {
-                                  "type": "number",
-                                  "description": "Precio de la unidad de bien o servicio servido/prestado, en la moneda indicada en la Cabecera de la Factura. Siempre sin impuestos."
-                                },
-                                "TotalCost": {
-                                  "type": "number",
-                                  "description": "Coste Total."
-                                },
-                                "DiscountsAndRebates": {
-                                  "type": "array",
-                                  "description": "Descuentos",
-                                  "items": [
-                                    {
-                                      "Discount": {
-                                        "type": "object",
-                                        "description": "Descuento",
-                                        "properties": {
-                                          "DiscountReason": {
-                                            "type": "string",
-                                            "description": "Concepto por el que se aplica descuento."
-                                          },
-                                          "DiscountRate": {
-                                            "type": "number",
-                                            "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
-                                          },
-                                          "DiscountAmount": {
-                                            "type": "number",
-                                            "description": "Importe a descontar sobre el TIB."
-                                          }
-                                        },
-                                        "required": [
-                                          "DiscountReason",
-                                          "DiscountAmount"
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                },
-                                "Charges": {
-                                  "type": "array",
-                                  "description": "cargos",
-                                  "items": [
-                                    {
-                                      "Charge": {
-                                        "type": "object",
-                                        "description": "cargo",
-                                        "properties": {
-                                          "ChargeReason": {
-                                            "type": "string",
-                                            "description": "Concepto por el que se aplica el cargo.",
-                                            "maxLength": 2500
-                                          },
-                                          "ChargeRate": {
-                                            "type": "number",
-                                            "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
-                                          },
-                                          "ChargeAmount": {
-                                            "type": "number",
-                                            "description": "Importe a cargar sobre el TIB."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  ]
-                                },
-                                "GrossAmount": {
-                                  "type": "number",
-                                  "description": "Importe bruto."
-                                },
-                                "TaxesOutputs": {
-                                  "type": "array",
-                                  "description": "Impuestos repercutidos. Es una secuencia de elementos, cada uno de los cuales contiene la información de un impuesto repercutido.",
-                                  "items": [
-                                    {
-                                      "Tax": {
-                                        "type": "object",
-                                        "description": "Impuesto.",
-                                        "properties": {
-                                          "TaxTypeCode": {
-                                            "type": "string",
-                                            "description": "Identificador del impuesto por el que se tributa. Para más información, lee la documentación."
-                                          },
-                                          "TaxRate": {
-                                            "type": "number",
-                                            "description": "Tipo impositivo. Para más información, lee la documentación."
-                                          },
-                                          "TaxableBase": {
-                                            "type": "object",
-                                            "description": "Base imponible. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
-                                            "properties": {
-                                              "TotalAmount": {
-                                                "type": "number",
-                                                "description": "Importe en la moneda original de la facturación. Para más información, lee la documentación."
-                                              }
-                                            },
-                                            "required": [
-                                              "TotalAmount"
-                                            ]
-                                          },
-                                          "TaxAmount": {
-                                            "type": "object",
-                                            "description": "Cuota. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
-                                            "properties": {
-                                              "TotalAmount": {
-                                                "type": "number",
-                                                "description": "Importe en la moneda original de la facturokación. Para más información, lee la documentación."
-                                              }
-                                            },
-                                            "required": [
-                                              "TotalAmount"
-                                            ]
-                                          }
-                                        },
-                                        "required": [
-                                          "TaxTypeCode",
-                                          "TaxRate",
-                                          "TaxableBase"
-                                        ]
-                                      }
-                                    }
-                                  ]
-                                },
-                                "LineItemPeriod": {
+                                "TaxPeriod": {
                                   "type": "object",
-                                  "description": "Información sobre el periodo de prestación de un servicio.",
+                                  "description": "Período natural en el que se produjeron los efectos fiscales de la factura a rectificar; y, por lo tanto, se tributó, y que ahora, es ojeto de rectificación. ISO 8601:2004.",
                                   "properties": {
                                     "StartDate": {
                                       "type": "string",
@@ -1279,221 +813,693 @@
                                     "EndDate"
                                   ]
                                 },
-                                "ArticleCode": {
+                                "CorrectionMethod": {
                                   "type": "string",
-                                  "description": "Código de artículo.",
-                                  "maxLength": 20
+                                  "description": "Código numérico que identifica el criterio empleado en cada caso para una rectificación / '01' - Se reflejan todos los detalles a rectificar de la factura original. '02' - Solo se anotan los detalles ya rectificados. '03' - Rectificación por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
+                                  "enum": [
+                                    "01",
+                                    "02",
+                                    "03",
+                                    "04"
+                                  ]
+                                },
+                                "CorrectionMethodDescription": {
+                                  "type": "string",
+                                  "description": "Descripción del criterio asociada al código indicado en el campo anterior / '01' - Rectificación modelo íntegro. '02' - Rectificación modelo por diferencias. '03' - Rectificación por descuento por volumen de operaciones durante un período. '04' - Autorizadas por la Agencia Tributaria'.",
+                                  "enum": [
+                                    "Rectificación modelo íntegro",
+                                    "Rectificación modelo por diferencias.",
+                                    "Rectificación por descuento por volumen de operaciones durante un período",
+                                    "Autorizadas por la Agencia Tributaria"
+                                  ]
+                                },
+                                "AdditionalReasonDescription": {
+                                  "type": "string",
+                                  "description": "Ampliación motivo de la rectificación. Descripción de las aclaraciones y motivos de la factura Rectificativa",
+                                  "maxLength": 2500
+                                },
+                                "InvoiceIssueDate": {
+                                  "type": "string",
+                                  "description": "Fecha de expedición de la factura rectificada. Valor obligatorio en el supuesto de que la etiqueta CorrectionMethod tome los valores '01' o '02'. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
                                 }
                               },
                               "required": [
-                                "ItemDescription",
-                                "Quantity",
-                                "UnitPriceWithoutTax",
-                                "TotalCost",
-                                "GrossAmount",
-                                "TaxesOutputs"
+                                "ReasonCode",
+                                "ReasonDescription",
+                                "TaxPeriod",
+                                "CorrectionMethod",
+                                "CorrectionMethodDescription"
                               ]
                             }
                           },
                           "required": [
-                            "InvoiceLine"
+                            "InvoiceNumber",
+                            "InvoiceDocumentType",
+                            "InvoiceClass"
                           ]
-                        }
-                      ]
-                    },
-                    "PaymentDetails": {
-                      "type": "array",
-                      "description": "Datos de pago.",
-                      "items": [
-                        {
+                        },
+                        "InvoiceIssueData": {
                           "type": "object",
+                          "description": "Datos de la emisión de la factura.",
                           "properties": {
-                            "Installment": {
-                              "type": "object",
-                              "description": "Vencimiento.",
-                              "properties": {
-                                "InstallmentDueDate": {
-                                  "type": "string",
-                                  "description": "Fechas en las que se deben atender los pagos. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
-                                },
-                                "InstallmentAmount": {
-                                  "type": "number",
-                                  "description": "Importe a satisfacer en cada plazo. Siempre con dos decimales."
-                                },
-                                "PaymentMeans": {
-                                  "type": "string",
-                                  "description": "Cada vencimiento/importe podrá tener un medio de pago concreto."
-                                },
-                                {
-                                  "oneOf": [
-                                    "AccountToBeCredited": {
-                                      "type": "object",
-                                      "description": "Cuenta de abono. Único formato admitido. Cuando la forma de pago sea transferencia este dato será obligatorio.",
-                                      "properties": {
-                                        {
-                                          "oneOf": [
-                                            "IBAN": {
-                                              "type": "string",
-                                              "description": "IBAN. Único formato admitido para identificar la cuenta. (Recomendado)"
-                                            },
-                                            "AccountNumber": {
-                                              "type": "string",
-                                              "description": "Número de cuenta"
-                                            }
-                                          ]
-                                        },
-                                        "BankCode": {
-                                          "type": "string",
-                                          "description": "Código de la entidad financiera.",
-                                          "maxLength": 60
-                                        },
-                                        "BIC": {
-                                          "type": "string",
-                                          "description": "Código SWIFT. Será obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
-                                          "minLength": 11,
-                                          "maxLength": 11
-                                        }
-                                      },
-                                      "required": [
-                                        "IBAN"
-                                      ]
-                                    },
-                                    "AccountToBeDebited": {
-                                      "type": "object",
-                                      "description": "Cuenta de cargo. Único formato admitido. Cuando la forma de pago sea transferencia este dato será obligatorio.",
-                                      "properties": {
-                                        {
-                                          "oneOf": [
-                                            "IBAN": {
-                                              "type": "string",
-                                              "description": "IBAN. Único formato admitido para identificar la cuenta. (Recomendado)"
-                                            },
-                                            "AccountNumber": {
-                                              "type": "string",
-                                              "description": "Número de cuenta"
-                                            }
-                                          ]
-                                        },
-                                        "BankCode": {
-                                          "type": "string",
-                                          "description": "Código de la entidad financiera.",
-                                          "maxLength": 60
-                                        },
-                                        "BIC": {
-                                          "type": "string",
-                                          "description": "Código SWIFT. Será obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
-                                          "minLength": 11,
-                                          "maxLength": 11
-                                        }
-                                      },
-                                      "required": [
-                                        "IBAN"
-                                      ]
-                                    }
-                                  ]  
-                                }
-                                ,
-                                "PaymentReconciliationReference": {
-                                  "type": "string",
-                                  "description": "Referencia expresa del pago. Dato que precisa el Emisor para conciliar los pagos con cada factura.",
-                                  "maxLength": 60
-                                }
-                              },
-                              "required": [
-                                "InstallmentDueDate",
-                                "InstallmentAmount",
-                                "PaymentMeans",
-                                "BankCode"
-                              ]
-                            }
-                          },
-                          "required": [
-                            "Installment"
-                          ]
-                        }
-                      ]
-                    },
-                    "LegalLiterals": {
-                      "type": "object",
-                      "description": "Literales legales.",
-                      "array": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "LegalReference": {
+                            "IssueDate": {
                               "type": "string",
-                              "description": "Textos literales que deben figurar obligatoriamete en determinadas facturas. Para más información, leer la documentación.",
-                              "maxLength": 250
+                              "description": "Fecha de expedición. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                            },
+                            "InvoicingPeriod": {
+                              "type": "object",
+                              "description": "Periodo de facturación. Para más información, leer la documentación.",
+                              "properties": {
+                                "StartDate": {
+                                  "type": "string",
+                                  "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                },
+                                "EndDate": {
+                                  "type": "string",
+                                  "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                }
+                              },
+                              "required": [
+                                "StartDate",
+                                "EndDate"
+                              ]
+                            },
+                            "InvoiceCurrencyCode": {
+                              "type": "string",
+                              "description": "Moneda de la operación. Código ISO 4217:2001 Alpha-3 de la moneda en la que se emite la factura. Para más información, leer la documentación."
+                            },
+                            "TaxCurrencyCode": {
+                              "type": "string",
+                              "description": "Moneda del impuesto. Código ISO 4217:2001 Alpha-3 de la moneda en la que se liquida el impuesto."
+                            },
+                            "LanguageName": {
+                              "type": "string",
+                              "description": "Lengua. Código ISO 639-1:2002 Alpha-2 de la lengua en la que se emite el documento."
                             }
-                          }
-                        }
-                      ]
-                    },
-                    "AdditionalData": {
-                      "type": "object",
-                      "description": "Datos adicionales.",
-                      "properties": {
-                        "RelatedDocuments": {
+                          },
+                          "required": [
+                            "IssueDate",
+                            "InvoiceCurrencyCode",
+                            "TaxCurrencyCode",
+                            "LanguageName"
+                          ]
+                        },
+                        "TaxesOutputs": {
                           "type": "array",
-                          "description": "Documentos asociados. Identificación de documentos Emisor / Receptor.",
+                          "description": "Impuestos repercutidos.",
                           "items": [
                             {
                               "type": "object",
                               "properties": {
-                                "Attachment": {
+                                "Tax": {
                                   "type": "object",
-                                  "description": "Documento adjunto. Para más información, leer la documentación.",
+                                  "description": "Impuesto.",
                                   "properties": {
-                                    "AttachmentCompressionAlgorithm": {
+                                    "TaxTypeCode": {
                                       "type": "string",
-                                      "description": "Documento usado para comprimir el documento adjunto."
+                                      "description": "Identificador del impuesto por el que se tributa. Para más información, leer la documentación."
                                     },
-                                    "AttachmentFormat": {
-                                      "type": "string",
-                                      "description": "Formato del documento adjunto."
+                                    "TaxRate": {
+                                      "type": "number",
+                                      "description": "Tipo impositivo. Para más información, leer la descripción."
                                     },
-                                    "AttachmentEncoding": {
-                                      "type": "string",
-                                      "description": "Algoritmo usado para codificar el documento adjunto."
+                                    "TaxableBase": {
+                                      "type": "object",
+                                      "description": "Base imponible. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
+                                      "properties": {
+                                        "TotalAmount": {
+                                          "type": "number",
+                                          "description": "Importe en la moneda original de la facturación. Para más información, leer la documentación."
+                                        }
+                                      },
+                                      "required": [
+                                        "TotalAmount"
+                                      ]
                                     },
-                                    "AttachmentDescription": {
-                                      "type": "string",
-                                      "description": "Descripción del documento.",
-                                      "maxLength": 2500
-                                    },
-                                    "AttachmentData": {
-                                      "type": "string",
-                                      "description": "Stream de datos del documento adjunto."
+                                    "TaxAmount": {
+                                      "type": "object",
+                                      "description": "Cuota. La legislación del impuesto correspondiente determina cómo se calcula la cuota.",
+                                      "properties": {
+                                        "TotalAmount": {
+                                          "type": "number",
+                                          "description": "Importe en la moneda original de la facturación. Para más información, leer la documentación."
+                                        }
+                                      },
+                                      "required": [
+                                        "TotalAmount"
+                                      ]
                                     }
                                   },
                                   "required": [
-                                    "AttachmentFormat",
-                                    "AttachmentData"
+                                    "TaxTypeCode",
+                                    "TaxRate",
+                                    "TaxableBase"
                                   ]
+                                }
+                              },
+                              "required": [
+                                "Tax"
+                              ]
+                            }
+                          ]
+                        },
+                        "InvoiceTotals": {
+                          "type": "object",
+                          "description": "Totales de la factura.",
+                          "properties": {
+                            "TotalGrossAmount": {
+                              "type": "number",
+                              "description": "Total Importe Bruto. Suma total de importes brutos de los detalles de la factura."
+                            },
+                            "GeneralDiscounts": {
+                              "type": "array",
+                              "description": "Descuentos sobre el Total Importe Bruto. Habrá tantos bloques de campos G",
+                              "items": [
+                                {
+                                  "Discount": {
+                                    "type": "object",
+                                    "description": "Descuento",
+                                    "properties": {
+                                      "DiscountReason": {
+                                        "type": "string",
+                                        "description": "Concepto por el que se aplica descuento.",
+                                        "maxLength": 2500
+                                      },
+                                      "DiscountRate": {
+                                        "type": "number",
+                                        "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
+                                      },
+                                      "DiscountAmount": {
+                                        "type": "number",
+                                        "descontar": "Importe a descontar sobre el TIB."
+                                      }
+                                    },
+                                    "required": [
+                                      "DiscountReason",
+                                      "DiscountAmount"
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            "GeneralSurcharges": {
+                              "type": "array",
+                              "description": "cargos",
+                              "items": [
+                                {
+                                  "Charge": {
+                                    "type": "object",
+                                    "description": "cargo",
+                                    "properties": {
+                                      "ChargeReason": {
+                                        "type": "string",
+                                        "description": "Concepto por el que se aplica el cargo.",
+                                        "maxLength": 2500
+                                      },
+                                      "ChargeRate": {
+                                        "type": "number",
+                                        "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
+                                      },
+                                      "ChargeAmount": {
+                                        "type": "number",
+                                        "description": "Importe a cargar sobre el TIB."
+                                      }
+                                    },
+                                    "required": [
+                                      "ChargeReason",
+                                      "ChargeAmount"
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            "TotalGeneralDiscounts": {
+                              "type": "number",
+                              "description": "Total general de descuentos. Sumatorio de los importes de los diferentes campos GeneralDiscounts"
+                            },
+                            "TotalGeneralSurcharges": {
+                              "type": "number",
+                              "description": "Total general de cargos. Sumatorio de los importes de los diferentes campos GeneralSurcharges"
+                            },
+                            "TotalGrossAmountBeforeTaxes": {
+                              "type": "number",
+                              "description": "Total importe bruto antes de impuestos.  Resultado de: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges."
+                            },
+                            "TotalTaxOutputs": {
+                              "type": "number",
+                              "description": "Total impuestos repercutidos. Sumatorio de todas las Cuotas y Recargos de Equivalencia."
+                            },
+                            "TotalTaxesWithheld": {
+                              "type": "number",
+                              "description": "Total impuestos retenidos. Para más información, leer la documentación."
+                            },
+                            "InvoiceTotal": {
+                              "type": "number",
+                              "description": "Total factura. Para más información, leer la documentación."
+                            },
+                            "TotalOutstandingAmount": {
+                              "type": "number",
+                              "description": "Total a pagar. Para más información, leer la documentación."
+                            },
+                            "TotalExecutableAmount": {
+                              "type": "number",
+                              "description": "Total a ejecutar. Para más información, leer la documentación."
+                            }
+                          },
+                          "required": [
+                            "TotalGrossAmount",
+                            "TotalGrossAmountBeforeTaxes",
+                            "TotalTaxOutputs",
+                            "TotalTaxesWithheld",
+                            "InvoiceTotal",
+                            "TotalOutstandingAmount",
+                            "TotalExecutableAmount"
+                          ]
+                        },
+                        "Items": {
+                          "type": "array",
+                          "description": "Información detallada.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "InvoiceLine": {
+                                  "type": "object",
+                                  "description": "Líneas de detalle de la factura.",
+                                  "properties": {
+                                    "IssuerContractReference": {
+                                      "type": "string",
+                                      "description": "Referencia del contrato del Emisor.",
+                                      "maxLength": 20
+                                    },
+                                    "IssuerTransactionReference": {
+                                      "type": "string",
+                                      "description": "Referencia de la Operación, Número de Pedido, Contrato, etc. del Emisor.",
+                                      "maxLength": 20
+                                    },
+                                    "SequenceNumber": {
+                                      "type": "number",
+                                      "description": "Número de secuencia o línea de pedido."
+                                    },
+                                    "DeliveryNotesReferences": {
+                                      "type": "array",
+                                      "description": "Referencias de albaranes.",
+                                      "items": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "DeliveryNote": {
+                                              "type": "object",
+                                              "description": "Información del albarán.",
+                                              "properties": {
+                                                "DeliveryNoteNumber": {
+                                                  "type": "string",
+                                                  "description": "Número de referencia del albarán.",
+                                                  "maxLength": 30
+                                                },
+                                                "DeliveryNoteDate": {
+                                                  "type": "string",
+                                                  "description": "Fecha del albarán. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                                }
+                                              },
+                                              "required": [
+                                                "DeliveryNoteNumber"
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "ItemDescription": {
+                                      "type": "string",
+                                      "description": "Descripción del bien o servicio.",
+                                      "maxLength": 2500
+                                    },
+                                    "Quantity": {
+                                      "type": "integer",
+                                      "description": "Cantidad. Número de Unidades servidas/prestadas."
+                                    },
+                                    "UnitOfMeasure": {
+                                      "type": "string",
+                                      "description": "Unidad en que está referida la Cantidad. Para más información, leer la documentación."
+                                    },
+                                    "UnitPriceWithoutTax": {
+                                      "type": "number",
+                                      "description": "Precio de la unidad de bien o servicio servido/prestado, en la moneda indicada en la Cabecera de la Factura. Siempre sin impuestos."
+                                    },
+                                    "TotalCost": {
+                                      "type": "number",
+                                      "description": "Coste Total."
+                                    },
+                                    "DiscountsAndRebates": {
+                                      "type": "array",
+                                      "description": "Descuentos",
+                                      "items": [
+                                        {
+                                          "Discount": {
+                                            "type": "object",
+                                            "description": "Descuento",
+                                            "properties": {
+                                              "DiscountReason": {
+                                                "type": "string",
+                                                "description": "Concepto por el que se aplica descuento."
+                                              },
+                                              "DiscountRate": {
+                                                "type": "number",
+                                                "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
+                                              },
+                                              "DiscountAmount": {
+                                                "type": "number",
+                                                "description": "Importe a descontar sobre el TIB."
+                                              }
+                                            },
+                                            "required": [
+                                              "DiscountReason",
+                                              "DiscountAmount"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "Charges": {
+                                      "type": "array",
+                                      "description": "cargos",
+                                      "items": [
+                                        {
+                                          "Charge": {
+                                            "type": "object",
+                                            "description": "cargo",
+                                            "properties": {
+                                              "ChargeReason": {
+                                                "type": "string",
+                                                "description": "Concepto por el que se aplica el cargo.",
+                                                "maxLength": 2500
+                                              },
+                                              "ChargeRate": {
+                                                "type": "number",
+                                                "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
+                                              },
+                                              "ChargeAmount": {
+                                                "type": "number",
+                                                "description": "Importe a cargar sobre el TIB."
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "GrossAmount": {
+                                      "type": "number",
+                                      "description": "Importe bruto."
+                                    },
+                                    "TaxesOutputs": {
+                                      "type": "array",
+                                      "description": "Impuestos repercutidos. Es una secuencia de elementos, cada uno de los cuales contiene la información de un impuesto repercutido.",
+                                      "items": [
+                                        {
+                                          "Tax": {
+                                            "type": "object",
+                                            "description": "Impuesto.",
+                                            "properties": {
+                                              "TaxTypeCode": {
+                                                "type": "string",
+                                                "description": "Identificador del impuesto por el que se tributa. Para más información, lee la documentación."
+                                              },
+                                              "TaxRate": {
+                                                "type": "number",
+                                                "description": "Tipo impositivo. Para más información, lee la documentación."
+                                              },
+                                              "TaxableBase": {
+                                                "type": "object",
+                                                "description": "Base imponible. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
+                                                "properties": {
+                                                  "TotalAmount": {
+                                                    "type": "number",
+                                                    "description": "Importe en la moneda original de la facturación. Para más información, lee la documentación."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "TotalAmount"
+                                                ]
+                                              },
+                                              "TaxAmount": {
+                                                "type": "object",
+                                                "description": "Cuota. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.",
+                                                "properties": {
+                                                  "TotalAmount": {
+                                                    "type": "number",
+                                                    "description": "Importe en la moneda original de la facturokación. Para más información, lee la documentación."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "TotalAmount"
+                                                ]
+                                              }
+                                            },
+                                            "required": [
+                                              "TaxTypeCode",
+                                              "TaxRate",
+                                              "TaxableBase"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "LineItemPeriod": {
+                                      "type": "object",
+                                      "description": "Información sobre el periodo de prestación de un servicio.",
+                                      "properties": {
+                                        "StartDate": {
+                                          "type": "string",
+                                          "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                        },
+                                        "EndDate": {
+                                          "type": "string",
+                                          "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                        }
+                                      },
+                                      "required": [
+                                        "StartDate",
+                                        "EndDate"
+                                      ]
+                                    },
+                                    "ArticleCode": {
+                                      "type": "string",
+                                      "description": "Código de artículo.",
+                                      "maxLength": 20
+                                    }
+                                  },
+                                  "required": [
+                                    "ItemDescription",
+                                    "Quantity",
+                                    "UnitPriceWithoutTax",
+                                    "TotalCost",
+                                    "GrossAmount",
+                                    "TaxesOutputs"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "InvoiceLine"
+                              ]
+                            }
+                          ]
+                        },
+                        "PaymentDetails": {
+                          "type": "array",
+                          "description": "Datos de pago.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "Installment": {
+                                  "type": "object",
+                                  "description": "Vencimiento.",
+                                  "properties": {
+                                    "InstallmentDueDate": {
+                                      "type": "string",
+                                      "description": "Fechas en las que se deben atender los pagos. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                    },
+                                    "InstallmentAmount": {
+                                      "type": "number",
+                                      "description": "Importe a satisfacer en cada plazo. Siempre con dos decimales."
+                                    },
+                                    "PaymentMeans": {
+                                      "type": "string",
+                                      "description": "Cada vencimiento/importe podrá tener un medio de pago concreto."
+                                    },
+                                    {
+                                      "oneOf": [
+                                        "AccountToBeCredited": {
+                                          "type": "object",
+                                          "description": "Cuenta de abono. Único formato admitido. Cuando la forma de pago sea transferencia este dato será obligatorio.",
+                                          "properties": {
+                                            {
+                                              "oneOf": [
+                                                "IBAN": {
+                                                  "type": "string",
+                                                  "description": "IBAN. Único formato admitido para identificar la cuenta. (Recomendado)"
+                                                },
+                                                "AccountNumber": {
+                                                  "type": "string",
+                                                  "description": "Número de cuenta"
+                                                }
+                                              ]
+                                            },
+                                            "BankCode": {
+                                              "type": "string",
+                                              "description": "Código de la entidad financiera.",
+                                              "maxLength": 60
+                                            },
+                                            "BIC": {
+                                              "type": "string",
+                                              "description": "Código SWIFT. Será obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
+                                              "minLength": 11,
+                                              "maxLength": 11
+                                            }
+                                          },
+                                          "required": [
+                                            "IBAN"
+                                          ]
+                                        },
+                                        "AccountToBeDebited": {
+                                          "type": "object",
+                                          "description": "Cuenta de cargo. Único formato admitido. Cuando la forma de pago sea transferencia este dato será obligatorio.",
+                                          "properties": {
+                                            {
+                                              "oneOf": [
+                                                "IBAN": {
+                                                  "type": "string",
+                                                  "description": "IBAN. Único formato admitido para identificar la cuenta. (Recomendado)"
+                                                },
+                                                "AccountNumber": {
+                                                  "type": "string",
+                                                  "description": "Número de cuenta"
+                                                }
+                                              ]
+                                            },
+                                            "BankCode": {
+                                              "type": "string",
+                                              "description": "Código de la entidad financiera.",
+                                              "maxLength": 60
+                                            },
+                                            "BIC": {
+                                              "type": "string",
+                                              "description": "Código SWIFT. Será obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
+                                              "minLength": 11,
+                                              "maxLength": 11
+                                            }
+                                          },
+                                          "required": [
+                                            "IBAN"
+                                          ]
+                                        }
+                                      ]  
+                                    }
+                                    ,
+                                    "PaymentReconciliationReference": {
+                                      "type": "string",
+                                      "description": "Referencia expresa del pago. Dato que precisa el Emisor para conciliar los pagos con cada factura.",
+                                      "maxLength": 60
+                                    }
+                                  },
+                                  "required": [
+                                    "InstallmentDueDate",
+                                    "InstallmentAmount",
+                                    "PaymentMeans",
+                                    "BankCode"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Installment"
+                              ]
+                            }
+                          ]
+                        },
+                        "LegalLiterals": {
+                          "type": "object",
+                          "description": "Literales legales.",
+                          "array": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "LegalReference": {
+                                  "type": "string",
+                                  "description": "Textos literales que deben figurar obligatoriamete en determinadas facturas. Para más información, leer la documentación.",
+                                  "maxLength": 250
                                 }
                               }
                             }
                           ]
                         },
-                        "Extensions": {
+                        "AdditionalData": {
                           "type": "object",
-                          "description": "Extensiones. Podrá incorporarse nuevas definiciones estructuradas cuando sean de interés conjunto para emisores y receptores, y no estén ya definidas en el esquema de la factura.",
+                          "description": "Datos adicionales.",
                           "properties": {
-                            "InvoiceType": {
-                              "type": "string",
-                              "description": "Tipo de factura"
+                            "RelatedDocuments": {
+                              "type": "array",
+                              "description": "Documentos asociados. Identificación de documentos Emisor / Receptor.",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "Attachment": {
+                                      "type": "object",
+                                      "description": "Documento adjunto. Para más información, leer la documentación.",
+                                      "properties": {
+                                        "AttachmentCompressionAlgorithm": {
+                                          "type": "string",
+                                          "description": "Documento usado para comprimir el documento adjunto."
+                                        },
+                                        "AttachmentFormat": {
+                                          "type": "string",
+                                          "description": "Formato del documento adjunto."
+                                        },
+                                        "AttachmentEncoding": {
+                                          "type": "string",
+                                          "description": "Algoritmo usado para codificar el documento adjunto."
+                                        },
+                                        "AttachmentDescription": {
+                                          "type": "string",
+                                          "description": "Descripción del documento.",
+                                          "maxLength": 2500
+                                        },
+                                        "AttachmentData": {
+                                          "type": "string",
+                                          "description": "Stream de datos del documento adjunto."
+                                        }
+                                      },
+                                      "required": [
+                                        "AttachmentFormat",
+                                        "AttachmentData"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "Extensions": {
+                              "type": "object",
+                              "description": "Extensiones. Podrá incorporarse nuevas definiciones estructuradas cuando sean de interés conjunto para emisores y receptores, y no estén ya definidas en el esquema de la factura.",
+                              "properties": {
+                                "InvoiceType": {
+                                  "type": "string",
+                                  "description": "Tipo de factura"
+                                }
+                              }
                             }
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "InvoiceHeader",
+                        "InvoiceIssueData",
+                        "TaxesOutputs",
+                        "InvoiceTotals",
+                        "Items"
+                      ]
                     }
-                  },
-                  "required": [
-                    "InvoiceHeader",
-                    "InvoiceIssueData",
-                    "TaxesOutputs",
-                    "InvoiceTotals",
-                    "Items"
                   ]
                 }
               },

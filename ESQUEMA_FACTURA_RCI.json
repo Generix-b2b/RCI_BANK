@@ -1,0 +1,1554 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "FacturaCyC": {
+      "type": "object",
+      "description": "Elemento origen de fichero factura crea y crece.",
+      "properties": {
+        "FileHeader": {
+          "type": "object",
+          "description": "Cabecera del fichero JSON.",
+          "properties": {
+            "SchemaVersion": {
+              "type": "string",
+              "description": "Codigo que indica la version.",
+              "enum": [
+                "3.2",
+                "3.2.1",
+                "3.2.2"
+              ]
+            },
+            "Modality": {
+              "type": "string",
+              "description": "Modalidad / Individual = (I), Lote = (L) / Para mas Informacion, leer la documentacion.",
+              "enum": [
+                "I",
+                "L"
+              ]
+            },
+            "InvoiceIssuerType": {
+              "type": "string",
+              "description": "Tipo Emisor Factura / Proveedor = (EM), Destinatario = (RE), Tercero = (TE) / Para mas informacion, leer la documentacion.",
+              "enum": [
+                "EM",
+                "RE",
+                "TE"
+              ]
+            },
+            "ThirdParty": {
+              "type": "object",
+              "description": "Tercero. La factura puede ser generada y firmada por un Tercero.",
+              "properties": {
+                "TaxIdentification": {
+                  "type": "object",
+                  "description": "Identificacion fiscal.",
+                  "properties": {
+                    "PersonTypeCode": {
+                      "type": "string",
+                      "description": "Tipo de persona / Fisica = (F), Juridica = (J).",
+                      "enum": [
+                        "F",
+                        "J"
+                      ]
+                    },
+                    "ResidenceTypeCode": {
+                      "type": "string",
+                      "description": "Identificacion del tipo de residencia / Extranjero = (E), Residente = (R), Residente en la UE = (U).",
+                      "enum": [
+                        "E",
+                        "R",
+                        "U"
+                      ]
+                    },
+                    "TaxIdentificationNumber": {
+                      "type": "string",
+                      "description": "Codigo de identificacion Fiscal del sujeto. Para mas informacion, leer la documentacion.",
+                      "minLength": 3,
+                      "maxLength": 30
+                    }
+                  },
+                  "required": [
+                    "PersonTypeCode",
+                    "ResidenceTypeCode",
+                    "TaxIdentificationNumber"
+                  ]
+                },
+                "LegalEntity": {
+                  "type": "object",
+                  "description": "Persona juridica y otras.",
+                  "properties": {
+                    "CorporateName": {
+                      "type": "string",
+                      "description": "Razon social.",
+                      "maxLength": 80
+                    },
+                    "RegistrationData": {
+                      "type": "object",
+                      "description": "Datos registrales: Inscripcion Registro, Tomo, Folio...",
+                      "properties": {
+                        "Book": {
+                          "type": "string",
+                          "description": "Libro",
+                          "maxLength": 20
+                        },
+                        "RegisterOfCompaniesLocation": {
+                          "type": "string",
+                          "description": "Registro mercantil.",
+                          "maxLength": 20
+                        },
+                        "Sheet": {
+                          "type": "string",
+                          "description": "Hoja.",
+                          "maxLength": 20
+                        },
+                        "Folio": {
+                          "type": "string",
+                          "description": "Folio.",
+                          "maxLength": 20
+                        },
+                        "Section": {
+                          "type": "string",
+                          "description": "Seccion.",
+                          "maxLength": 20
+                        },
+                        "Volume": {
+                          "type": "string",
+                          "description": "Tomo.",
+                          "maxLength": 20
+                        },
+                        "AdditionalRegistrationData": {
+                          "type": "string",
+                          "description": "Otros datos registrales.",
+                          "maxLength": 20
+                        }
+                      }
+                    },
+                    "AddressInSpain": {
+                      "type": "object",
+                      "description": "Direccion en España.",
+                      "properties": {
+                        "Address": {
+                          "type": "string",
+                          "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                          "maxLength": 80
+                        },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                        "PostCode": {
+                          "type": "string",
+                          "description": "Codigo postal asignado por correos.",
+                          "maxLength": 5
+                        },
+                        "Town": {
+                          "type": "string",
+                          "description": "Poblacion. Correspondiente al C.P.",
+                          "maxLength": 50
+                        },
+                        "Province": {
+                          "type": "string",
+                          "description": "Provincia. Donde esta situada la Poblacion.",
+                          "maxLength": 20
+                        },
+                        "CountryCode": {
+                          "type": "string",
+                          "description": "Codigo pais. Segun la ISO 3166-1:2006. Al ser un domicilio ubicado en España siempre sera 'ESP'",
+                          "enum": [
+                            "ESP"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "Address",
+                        "PostCode",
+                        "Town",
+                        "Province",
+                        "CountryCode"
+                      ]
+                    },
+                    "ContactDetails": {
+                      "type": "object",
+                      "description": "Datos de contacto.",
+                      "properties": {
+                        "Telephone": {
+                          "type": "string",
+                          "description": "TelÃ©fono. Numero de telÃ©fono completo con prefijos del pais.",
+                          "maxLength": 15
+                        },
+                        "Telephone2": {
+                          "type": "string",
+                          "description": "Fax. Numero de fax completo con prefijos del pais.",
+                          "maxLength": 15
+                        },
+                        "WebAddress": {
+                          "type": "string",
+                          "description": "Pagina web. URL de la direccion de internet.",
+                          "maxLength": 60
+                        },
+                        "ElectronicMail": {
+                          "type": "string",
+                          "description": "Correo electronico. Direccion de correo electronico.",
+                          "maxLength": 60
+                        },
+                        "ContactPersons": {
+                          "type": "string",
+                          "description": "Contactos. Apellidos y Nombre/Razon Social.",
+                          "maxLength": 40
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "CorporateName",
+                    "AddressInSpain"
+                  ]
+                }
+              },
+              "required": [
+                "TaxIdentification",
+                "LegalEntity"
+              ]
+            },
+            "Batch": {
+              "type": "object",
+              "description": "Lote",
+              "properties": {
+                "BatchIdentifier": {
+                  "type": "string",
+                  "description": "Identificador del lote. Concatenacion del nÂº del emisor con el numero de la primera factura y el numero de serie",
+                  "maxLength": 70
+                },
+                "InvoicesCount": {
+                  "type": "integer",
+                  "description": "Numero total de facturas. Refleja, cuando es lote, el numero de facturas del mismo. Siempre sera valor '1'' cuando el campo Modality (Modalidad) tenga el valor 'I'."
+                },
+                "TotalInvoicesAmount": {
+                  "type": "object",
+                  "description": "Total facturas. Suma de los importes InvoiceTotal del Fichero. Para mas informacion, leer la documentacion.",
+                  "properties": {
+                    "TotalAmount": {
+                      "type": "number",
+                      "description": "Importe en la moneda original de la facturacion. Para mas informacion, leer la documentacion."
+                    }
+                  },
+                  "required": [
+                    "TotalAmount"
+                  ]
+                },
+                "TotalOutstandingAmount": {
+                  "type": "object",
+                  "description": "Total a pagar. Para mas informacion, leer la documentacion",
+                  "properties": {
+                    "TotalAmount": {
+                      "type": "number",
+                      "description": "Importe en la moneda original de la facturacion. Para mas informacion, leer la documentacion."
+                    }
+                  },
+                  "required": [
+                    "TotalAmount"
+                  ]
+                },
+                "TotalExecutableAmount": {
+                  "type": "object",
+                  "description": "Total a Ejecutar.",
+                  "properties": {
+                    "TotalAmount": {
+                      "type": "number",
+                      "description": "Importe en la moneda original de facturacion. Para mas informacion, leer la documentacion."
+                    }
+                  },
+                  "required": [
+                    "TotalAmount"
+                  ]
+                },
+                "InvoiceCurrencyCode": {
+                  "type": "string",
+                  "description": "Codigo ISO 4217:2001 Alpha-3 de la moneda en la que se emite la factura. Para mas infromacion, leer la documentacion"
+                }
+              },
+              "required": [
+                "BatchIdentifier",
+                "InvoicesCount",
+                "TotalInvoicesAmount",
+                "TotalOutstandingAmount",
+                "TotalExecutableAmount",
+                "InvoiceCurrencyCode"
+              ]
+            }
+          },
+          "required": [
+            "SchemaVersion",
+            "Modality",
+            "InvoiceIssuerType",
+            "Batch"
+          ]
+        },
+        "Invoices": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "description": "Facturas CyC",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "Parties": {
+                  "type": "object",
+                  "description": "Sujetos. Datos del emisor y receptor de la factura.",
+                  "properties": {
+                    "SellerParty": {
+                      "type": "object",
+                      "description": "Emisor. Datos basicos del fichero. Son comunes a la factura o facturas que se incluyen.",
+                      "properties": {
+                        "TaxIdentification": {
+                          "type": "object",
+                          "description": "Identification fiscal.",
+                          "properties": {
+                            "PersonTypeCode": {
+                              "type": "string",
+                              "description": "Tipo de persona / Fisica = (F), Juridica = (J).",
+                              "enum": [
+                                "F",
+                                "J"
+                              ]
+                            },
+                            "ResidenceTypeCode": {
+                              "type": "string",
+                              "description": "Identificacion del tipo de residencia / Extranjero = (E), Residente = (R), Residente en la UE = (U).",
+                              "enum": [
+                                "E",
+                                "R",
+                                "U"
+                              ]
+                            },
+                            "TaxIdentificationNumber": {
+                              "type": "string",
+                              "description": "Codigo de identificacion Fiscal del sujeto. Para mas informacion, leer la documentacion.",
+                              "minLength": 3,
+                              "maxLength": 30
+                            }
+                          },
+                          "required": [
+                            "PersonTypeCode",
+                            "ResidenceTypeCode",
+                            "TaxIdentificationNumber"
+                          ]
+                        },
+                        "AdministrativeCentre": {
+                          "type": "object",
+                          "description": "Centro",
+                          "properties": {
+                            "CentreCode": {
+                              "type": "string",
+                              "description": "Numero del Departamento Emisor.",
+                              "maxLength": 10
+                            },
+                            "RoleTypeCode": {
+                              "type": "string",
+                              "description": "Tipo  rol.  Indica  la  funcion  de  un  Punto  Operacional  (P.O.) definido  como  Centro/Departamento. Para mas informacion, leer la documentacion."
+                            },
+                            "AddressInSpain": {
+                              "type": "object",
+                              "description": "Direccion en España.",
+                              "properties": {
+                                "Address": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "PostCode": {
+                                  "type": "string",
+                                  "description": "Codigo postal asignado por correos.",
+                                  "maxLength": 5
+                                },
+                                "Town": {
+                                  "type": "string",
+                                  "description": "Poblacion. Correspondiente al C.P.",
+                                  "maxLength": 50
+                                },
+                                "Province": {
+                                  "type": "string",
+                                  "description": "Provincia. Donde esta situada la Poblacion.",
+                                  "maxLength": 20
+                                },
+                                "CountryCode": {
+                                  "type": "string",
+                                  "description": "Codigo pais. Segun la ISO 3166-1:2006. Al ser un domicilio en España siempre sera 'ESP'",
+                                  "enum": [
+                                    "ESP"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Address",
+                                "PostCode",
+                                "Town",
+                                "Province",
+                                "CountryCode"
+                              ]
+                            },
+                            "CentreDescription": {
+                              "type": "string",
+                              "description": "Descripcion del centro.",
+                              "maxLength": 2500
+                            }
+                          },
+                          "required": [
+                            "AddressInSpain"
+                          ]
+                        },
+                        "LegalEntity": {
+                          "type": "object",
+                          "description": "Persona juridica y otras",
+                          "properties": {
+                            "CorporateName": {
+                              "type": "string",
+                              "description": "Razon social.",
+                              "maxLength": 80
+                            },
+                            "TradeName": {
+                              "type": "string",
+                              "description": "Nombre Comercial.",
+                              "maxLength": 40
+                            },
+                            "RegistrationData": {
+                              "type": "object",
+                              "description": "Datos registrales: Inscripcion Registro, Tomo, Folio...",
+                              "properties": {
+                                "Book": {
+                                  "type": "string",
+                                  "description": "Libro",
+                                  "maxLength": 20
+                                },
+                                "RegisterOfCompaniesLocation": {
+                                  "type": "string",
+                                  "description": "Registro mercantil.",
+                                  "maxLength": 20
+                                },
+                                "Sheet": {
+                                  "type": "string",
+                                  "description": "Hoja.",
+                                  "maxLength": 20
+                                },
+                                "Folio": {
+                                  "type": "string",
+                                  "description": "Folio.",
+                                  "maxLength": 20
+                                },
+                                "Section": {
+                                  "type": "string",
+                                  "description": "Seccion.",
+                                  "maxLength": 20
+                                },
+                                "Volume": {
+                                  "type": "string",
+                                  "description": "Tomo.",
+                                  "maxLength": 20
+                                },
+                                "AdditionalRegistrationData": {
+                                  "type": "string",
+                                  "description": "Otros datos registrales.",
+                                  "maxLength": 20
+                                }
+                              }
+                            },
+                            "AddressInSpain": {
+                              "type": "object",
+                              "description": "Direccion en España.",
+                              "properties": {
+                                "Address": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "PostCode": {
+                                  "type": "string",
+                                  "description": "Codigo postal asignado por correos.",
+                                  "maxLength": 5
+                                },
+                                "Town": {
+                                  "type": "string",
+                                  "description": "Poblacion. correspondiente al C.P.",
+                                  "maxLength": 50
+                                },
+                                "Province": {
+                                  "type": "string",
+                                  "description": "Provincia. Donde esta situada la Poblacion.",
+                                  "maxLength": 20
+                                },
+                                "CountryCode": {
+                                  "type": "string",
+                                  "description": "Codigo pais. Segun la ISO 3166-1:2006. Al ser un domicilio en España siempre sera 'ESP'",
+                                  "enum": [
+                                    "ESP"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Address",
+                                "PostCode",
+                                "Town",
+                                "Province",
+                                "CountryCode"
+                              ]
+                            },
+                            "ContactDetails": {
+                              "type": "object",
+                              "description": "Datos de contacto.",
+                              "properties": {
+                                "Telephone": {
+                                  "type": "string",
+                                  "description": "TelÃ©fono. Numero de telÃ©fono completo con prefijos del pais.",
+                                  "maxLength": 15
+                                },
+                                "Telephone2": {
+                                  "type": "string",
+                                  "description": "Fax. Numero de fax completo con prefijos del pais.",
+                                  "maxLength": 15
+                                },
+                                "WebAddress": {
+                                  "type": "string",
+                                  "description": "Pagina web. URL de la direccion de internet.",
+                                  "maxLength": 60
+                                },
+                                "ElectronicMail": {
+                                  "type": "string",
+                                  "description": "Correo electronico. Direccion de correo electronico.",
+                                  "maxLength": 60
+                                },
+                                "ContactPersons": {
+                                  "type": "string",
+                                  "description": "Contactos. Apellidos y Nombre/Razon Social.",
+                                  "maxLength": 40
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "CorporateName",
+                            "AddressInSpain"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "TaxIdentification",
+                        "LegalEntity"
+                      ]
+                    },
+                    "BuyerParty": {
+                      "type": "object",
+                      "description": "Receptor. Datos basicos del fichero. Son comunes a la factura o facturas que se incluyen.",
+                      "properties": {
+                        "TaxIdentification": {
+                          "type": "object",
+                          "description": "Identificacion fiscal",
+                          "properties": {
+                            "PersonTypeCode": {
+                              "type": "string",
+                              "description": "Tipo de persona / Fisica = (F), Juridica = (J).",
+                              "enum": [
+                                "F",
+                                "J"
+                              ]
+                            },
+                            "ResidenceTypeCode": {
+                              "type": "string",
+                              "description": "Identificacion del tipo de residencia / Extranjero = (E), Residente = (R), Residente en la UE = (U).",
+                              "enum": [
+                                "E",
+                                "R",
+                                "U"
+                              ]
+                            },
+                            "TaxIdentificationNumber": {
+                              "type": "string",
+                              "description": "Codigo de identificacion Fiscal del sujeto. Para mas informacion, leer la documentacion.",
+                              "minLength": 3,
+                              "maxLength": 30
+                            }
+                          },
+                          "required": [
+                            "PersonTypeCode",
+                            "ResidenceTypeCode",
+                            "TaxIdentificationNumber"
+                          ]
+                        },
+                        "PartyIdentification": {
+                          "type": "string",
+                          "description": "Identificacion de la entidad; Rellenar con el numero de referencia de la entidad del programa de facturacion",
+                          "maxLength": 10
+                        },
+                        "AdministrativeCentre": {
+                          "type": "object",
+                          "description": "Centro",
+                          "properties": {
+                            "CentreCode": {
+                              "type": "string",
+                              "description": "Numero del Departamento Emisor.",
+                              "maxLength": 10
+                            },
+                            "RoleTypeCode": {
+                              "type": "string",
+                              "description": "Tipo  rol.  Indica  la  funcion  de  un  Punto  Operacional  (P.O.) definido  como  Centro/Departamento. Para mas informacion, leer la documentacion."
+                            },
+                            "AddressInSpain": {
+                              "type": "object",
+                              "description": "Direccion en España.",
+                              "properties": {
+                                "Address": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "PostCode": {
+                                  "type": "string",
+                                  "description": "Codigo postal asignado por correos.",
+                                  "maxLength": 5
+                                },
+                                "Town": {
+                                  "type": "string",
+                                  "description": "Poblacion. Correspondiente al C.P.",
+                                  "maxLength": 50
+                                },
+                                "Province": {
+                                  "type": "string",
+                                  "description": "Provincia. Donde esta situada la Poblacion.",
+                                  "maxLength": 20
+                                },
+                                "CountryCode": {
+                                  "type": "string",
+                                  "description": "Codigo pais. Segun la ISO 3166-1:2006. Al ser un domicilio en España siempre sera 'ESP'",
+                                  "enum": [
+                                    "ESP"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Address",
+                                "PostCode",
+                                "Town",
+                                "Province",
+                                "CountryCode"
+                              ]
+                            },
+                            "CentreDescription": {
+                              "type": "string",
+                              "description": "Descripcion del centro.",
+                              "maxLength": 2500
+                            }
+                          },
+                          "required": [
+                            "AddressInSpain"
+                          ]
+                        },
+                        "LegalEntity": {
+                          "type": "object",
+                          "description": "Persona juridica y otras.",
+                          "properties": {
+                            "CorporateName": {
+                              "type": "string",
+                              "maxLength": 80
+                            },
+                            "AddressInSpain": {
+                              "type": "object",
+                              "description": "Direccion en España.",
+                              "properties": {
+                                "Address": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "AddressLine": {
+                                  "type": "string",
+                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                                  "maxLength": 80
+                                },
+                                "PostCode": {
+                                  "type": "string",
+                                  "description": "Codigo postal asignado por correos.",
+                                  "maxLength": 5
+                                },
+                                "Town": {
+                                  "type": "string",
+                                  "description": "Poblacion. Correspondiente al C.P.",
+                                  "maxLength": 50
+                                },
+                                "Province": {
+                                  "type": "string",
+                                  "description": "Provincia. Donde esta situada la Poblacion.",
+                                  "maxLength": 20
+                                },
+                                "CountryCode": {
+                                  "type": "string",
+                                  "description": "Codigo pais. Segun la ISO 3166-1:2006. al ser un domicilio ubicado en España siempre sera 'ESP'",
+                                  "enum": [
+                                    "ESP"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Address",
+                                "PostCode",
+                                "Town",
+                                "Province",
+                                "CountryCode"
+                              ]
+                            },
+                            "ContactDetails": {
+                              "type": "object",
+                              "description": "Datos de contacto.",
+                              "properties": {
+                                "Telephone": {
+                                  "type": "string",
+                                  "description": "TelÃ©fono. Numero de telÃ©fono completo con prefijos del pais.",
+                                  "maxLength": 15
+                                },
+                                "Telephone2": {
+                                  "type": "string",
+                                  "description": "Fax. Numero de fax completo con prefijos del pais.",
+                                  "maxLength": 15
+                                },
+                                "WebAddress": {
+                                  "type": "string",
+                                  "description": "Pagina web. URL de la direccion de internet.",
+                                  "maxLength": 60
+                                },
+                                "ElectronicMail": {
+                                  "type": "string",
+                                  "description": "Correo electronico. Direccion de correo electronico.",
+                                  "maxLength": 60
+                                },
+                                "ContactPersons": {
+                                  "type": "string",
+                                  "description": "Contactos. Apellidos y Nombre/Razon Social.",
+                                  "maxLength": 40
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "CorporateName",
+                            "AddressInSpain"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "TaxIdentification",
+                        "LegalEntity"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "SellerParty",
+                    "BuyerParty"
+                  ]
+                },
+                "Invoice": {
+                  "type": "array",
+                  "minItems": 1,
+                  "description": "Facturas.",
+                  "items": [
+                    {
+                      "type": "object",
+                      "description": "Factura.",
+                      "properties": {
+                        "InvoiceHeader": {
+                          "type": "object",
+                          "description": "Cabecera de factura. Para cada una de las facturas que pueden componer un Lote, recoge datos que determinan inequivocamente cada factura.",
+                          "properties": {
+                            "InvoiceNumber": {
+                              "type": "string",
+                              "description": "Numero de factura. Numero asignado por el emisor.",
+                              "maxLength": 20
+                            },
+                            "InvoiceDocumentType": {
+                              "type": "string",
+                              "description": "Tipo documento Factura / (FC) = Factura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura(DEPRECATED)",
+                              "enum": [
+                                "FC",
+                                "FA",
+                                "AF"
+                              ]
+                            },
+                            "InvoiceClass": {
+                              "type": "string",
+                              "description": "Clase de Factura / (OO) = Original, (OR) = Original Rectificativa, (OC) = Original Recapitulativa, (CO) = Duplicado Original, (CR) = Duplicado Rectificativa, (CC) = Duplicado Recapitulativa",
+                              "enum": [
+                                "OO",
+                                "OR",
+                                "OC",
+                                "CO",
+                                "CR",
+                                "CC"
+                              ]
+                            },
+                            "Corrective": {
+                              "type": "object",
+                              "description": "Rectificativa.",
+                              "properties": {
+                                "InvoiceNumber": {
+                                  "type": "string",
+                                  "description": "Numero de la factura que se rectifica. Sera obligatorio cuando el dato 'CorrectionMethod' (Codigo del criterio de la rectificacion) sea '01' o '02'.",
+                                  "maxLength": 20
+                                },
+                                "InvoiceSeriesCode": {
+                                  "type": "string",
+                                  "description": "Numero de serie de la factura que se rectifica.",
+                                  "maxLength": 20
+                                },
+                                "ReasonCode": {
+                                  "type": "string",
+                                  "description": "Codigo del motivo. Codigo numÃ©rico del motivo de rectificacion. '01' a '16' errores segun reglamento RD 1496/2003; '80' a '85' errores segun ArtÂº 80 Ley 37/92 de IVA"
+                                },
+                                "ReasonDescription": {
+                                  "type": "string",
+                                  "description": "Descripcion motivo. Descripcion del motivo de rectificacion y que se corresponde con cada codigo. Ver tabla de codigos y descripciones"
+                                },
+                                "TaxPeriod": {
+                                  "type": "object",
+                                  "description": "Periodo natural en el que se produjeron los efectos fiscales de la factura a rectificar; y, por lo tanto, se tributo, y que ahora, es ojeto de rectificacion. ISO 8601:2004.",
+                                  "properties": {
+                                    "StartDate": {
+                                      "type": "string",
+                                      "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                    },
+                                    "EndDate": {
+                                      "type": "string",
+                                      "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                    }
+                                  },
+                                  "required": [
+                                    "StartDate",
+                                    "EndDate"
+                                  ]
+                                },
+                                "CorrectionMethod": {
+                                  "type": "string",
+                                  "description": "Codigo numÃ©rico que identifica el criterio empleado en cada caso para una rectificacion / '01' - Se reflejan todos los detalles a rectificar de la factura original. '02' - Solo se anotan los detalles ya rectificados. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
+                                  "enum": [
+                                    "01",
+                                    "02",
+                                    "03",
+                                    "04"
+                                  ]
+                                },
+                                "CorrectionMethodDescription": {
+                                  "type": "string",
+                                  "description": "Descripcion del criterio asociada al codigo indicado en el campo anterior / '01' - Rectificacion modelo integro. '02' - Rectificacion modelo por diferencias. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria'.",
+                                  "enum": [
+                                    "Rectificacion modelo integro",
+                                    "Rectificacion modelo por diferencias.",
+                                    "Rectificacion por descuento por volumen de operaciones durante un periodo",
+                                    "Autorizadas por la Agencia Tributaria"
+                                  ]
+                                },
+                                "AdditionalReasonDescription": {
+                                  "type": "string",
+                                  "description": "Ampliacion motivo de la rectificacion. Descripcion de las aclaraciones y motivos de la factura Rectificativa",
+                                  "maxLength": 2500
+                                },
+                                "InvoiceIssueDate": {
+                                  "type": "string",
+                                  "description": "Fecha de expedicion de la factura rectificada. Valor obligatorio en el supuesto de que la etiqueta CorrectionMethod tome los valores '01' o '02'. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                }
+                              },
+                              "required": [
+                                "ReasonCode",
+                                "ReasonDescription",
+                                "TaxPeriod",
+                                "CorrectionMethod",
+                                "CorrectionMethodDescription"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "InvoiceNumber",
+                            "InvoiceDocumentType",
+                            "InvoiceClass"
+                          ]
+                        },
+                        "InvoiceIssueData": {
+                          "type": "object",
+                          "description": "Datos de la emision de la factura.",
+                          "properties": {
+                            "IssueDate": {
+                              "type": "string",
+                              "description": "Fecha de expedicion. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                            },
+                            "InvoicingPeriod": {
+                              "type": "object",
+                              "description": "Periodo de facturacion. Para mas informacion, leer la documentacion.",
+                              "properties": {
+                                "StartDate": {
+                                  "type": "string",
+                                  "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                },
+                                "EndDate": {
+                                  "type": "string",
+                                  "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                }
+                              },
+                              "required": [
+                                "StartDate",
+                                "EndDate"
+                              ]
+                            },
+                            "InvoiceCurrencyCode": {
+                              "type": "string",
+                              "description": "Moneda de la operacion. Codigo ISO 4217:2001 Alpha-3 de la moneda en la que se emite la factura. Para mas informacion, leer la documentacion."
+                            },
+                            "TaxCurrencyCode": {
+                              "type": "string",
+                              "description": "Moneda del impuesto. Codigo ISO 4217:2001 Alpha-3 de la moneda en la que se liquida el impuesto."
+                            },
+                            "LanguageName": {
+                              "type": "string",
+                              "description": "Lengua. Codigo ISO 639-1:2002 Alpha-2 de la lengua en la que se emite el documento."
+                            }
+                          },
+                          "required": [
+                            "IssueDate",
+                            "InvoiceCurrencyCode",
+                            "TaxCurrencyCode",
+                            "LanguageName"
+                          ]
+                        },
+                        "TaxesOutputs": {
+                          "type": "array",
+                          "minItems": 1,
+                          "description": "Impuestos repercutidos.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "Tax": {
+                                  "type": "object",
+                                  "description": "Impuesto.",
+                                  "properties": {
+                                    "TaxTypeCode": {
+                                      "type": "string",
+                                      "description": "Identificador del impuesto por el que se tributa. Para mas informacion, leer la documentacion."
+                                    },
+                                    "TaxRate": {
+                                      "type": "number",
+                                      "description": "Tipo impositivo. Para mas informacion, leer la descripcion."
+                                    },
+                                    "TaxableBase": {
+                                      "type": "object",
+                                      "description": "Base imponible. La legislacion del impuesto correspondiente determina como se calcula la base imponible.",
+                                      "properties": {
+                                        "TotalAmount": {
+                                          "type": "number",
+                                          "description": "Importe en la moneda original de la facturacion. Para mas informacion, leer la documentacion."
+                                        }
+                                      },
+                                      "required": [
+                                        "TotalAmount"
+                                      ]
+                                    },
+                                    "TaxAmount": {
+                                      "type": "object",
+                                      "description": "Cuota. La legislacion del impuesto correspondiente determina como se calcula la cuota.",
+                                      "properties": {
+                                        "TotalAmount": {
+                                          "type": "number",
+                                          "description": "Importe en la moneda original de la facturacion. Para mas informacion, leer la documentacion."
+                                        }
+                                      },
+                                      "required": [
+                                        "TotalAmount"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "TaxTypeCode",
+                                    "TaxRate",
+                                    "TaxableBase"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Tax"
+                              ]
+                            }
+                          ]
+                        },
+                        "InvoiceTotals": {
+                          "type": "object",
+                          "description": "Totales de la factura.",
+                          "properties": {
+                            "TotalGrossAmount": {
+                              "type": "number",
+                              "description": "Total Importe Bruto. Suma total de importes brutos de los detalles de la factura."
+                            },
+                            "GeneralDiscounts": {
+                              "type": "array",
+                              "minItems": 1,
+                              "description": "Descuentos sobre el Total Importe Bruto. Habra tantos bloques de campos G",
+                              "items": [
+                                {
+                                  "Discount": {
+                                    "type": "object",
+                                    "description": "Descuento",
+                                    "properties": {
+                                      "DiscountReason": {
+                                        "type": "string",
+                                        "description": "Concepto por el que se aplica descuento.",
+                                        "maxLength": 2500
+                                      },
+                                      "DiscountRate": {
+                                        "type": "number",
+                                        "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
+                                      },
+                                      "DiscountAmount": {
+                                        "type": "number",
+                                        "description": "Importe a descontar sobre el TIB."
+                                      }
+                                    },
+                                    "required": [
+                                      "DiscountReason",
+                                      "DiscountAmount"
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            "GeneralSurcharges": {
+                              "type": "array",
+                              "minItems": 1,
+                              "description": "cargos",
+                              "items": [
+                                {
+                                  "Charge": {
+                                    "type": "object",
+                                    "description": "cargo",
+                                    "properties": {
+                                      "ChargeReason": {
+                                        "type": "string",
+                                        "description": "Concepto por el que se aplica el cargo.",
+                                        "maxLength": 2500
+                                      },
+                                      "ChargeRate": {
+                                        "type": "number",
+                                        "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
+                                      },
+                                      "ChargeAmount": {
+                                        "type": "number",
+                                        "description": "Importe a cargar sobre el TIB."
+                                      }
+                                    },
+                                    "required": [
+                                      "ChargeReason",
+                                      "ChargeAmount"
+                                    ]
+                                  }
+                                }
+                              ]
+                            },
+                            "TotalGeneralDiscounts": {
+                              "type": "number",
+                              "description": "Total general de descuentos. Sumatorio de los importes de los diferentes campos GeneralDiscounts"
+                            },
+                            "TotalGeneralSurcharges": {
+                              "type": "number",
+                              "description": "Total general de cargos. Sumatorio de los importes de los diferentes campos GeneralSurcharges"
+                            },
+                            "TotalGrossAmountBeforeTaxes": {
+                              "type": "number",
+                              "description": "Total importe bruto antes de impuestos.  Resultado de: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges."
+                            },
+                            "TotalTaxOutputs": {
+                              "type": "number",
+                              "description": "Total impuestos repercutidos. Sumatorio de todas las Cuotas y Recargos de Equivalencia."
+                            },
+                            "TotalTaxesWithheld": {
+                              "type": "number",
+                              "description": "Total impuestos retenidos. Para mas informacion, leer la documentacion."
+                            },
+                            "InvoiceTotal": {
+                              "type": "number",
+                              "description": "Total factura. Para mas informacion, leer la documentacion."
+                            },
+                            "TotalOutstandingAmount": {
+                              "type": "number",
+                              "description": "Total a pagar. Para mas informacion, leer la documentacion."
+                            },
+                            "TotalExecutableAmount": {
+                              "type": "number",
+                              "description": "Total a ejecutar. Para mas informacion, leer la documentacion."
+                            }
+                          },
+                          "required": [
+                            "TotalGrossAmount",
+                            "TotalGrossAmountBeforeTaxes",
+                            "TotalTaxOutputs",
+                            "TotalTaxesWithheld",
+                            "InvoiceTotal",
+                            "TotalOutstandingAmount",
+                            "TotalExecutableAmount"
+                          ]
+                        },
+                        "Items": {
+                          "type": "array",
+                          "minItems": 1,
+                          "description": "Informacion detallada.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "InvoiceLine": {
+                                  "type": "object",
+                                  "description": "Lineas de detalle de la factura.",
+                                  "properties": {
+                                    "IssuerContractReference": {
+                                      "type": "string",
+                                      "description": "Referencia del contrato del Emisor.",
+                                      "maxLength": 20
+                                    },
+                                    "IssuerTransactionReference": {
+                                      "type": "string",
+                                      "description": "Referencia de la Operacion, Numero de Pedido, Contrato, etc. del Emisor.",
+                                      "maxLength": 20
+                                    },
+                                    "SequenceNumber": {
+                                      "type": "number",
+                                      "description": "Numero de secuencia o linea de pedido."
+                                    },
+                                    "DeliveryNotesReferences": {
+                                      "type": "array",
+                                      "minItems": 1,
+                                      "description": "Referencias de albaranes.",
+                                      "items": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "DeliveryNote": {
+                                              "type": "object",
+                                              "description": "Informacion del albaran.",
+                                              "properties": {
+                                                "DeliveryNoteNumber": {
+                                                  "type": "string",
+                                                  "description": "Numero de referencia del albaran.",
+                                                  "maxLength": 30
+                                                },
+                                                "DeliveryNoteDate": {
+                                                  "type": "string",
+                                                  "description": "Fecha del albaran. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                                }
+                                              },
+                                              "required": [
+                                                "DeliveryNoteNumber"
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "ItemDescription": {
+                                      "type": "string",
+                                      "description": "Descripcion del bien o servicio.",
+                                      "maxLength": 2500
+                                    },
+                                    "Quantity": {
+                                      "type": "integer",
+                                      "description": "Cantidad. Numero de Unidades servidas/prestadas."
+                                    },
+                                    "UnitOfMeasure": {
+                                      "type": "string",
+                                      "description": "Unidad en que esta referida la Cantidad. Para mas informacion, leer la documentacion."
+                                    },
+                                    "UnitPriceWithoutTax": {
+                                      "type": "number",
+                                      "description": "Precio de la unidad de bien o servicio servido/prestado, en la moneda indicada en la Cabecera de la Factura. Siempre sin impuestos."
+                                    },
+                                    "TotalCost": {
+                                      "type": "number",
+                                      "description": "Coste Total."
+                                    },
+                                    "DiscountsAndRebates": {
+                                      "type": "array",
+                                      "minItems": 1,
+                                      "description": "Descuentos",
+                                      "items": [
+                                        {
+                                          "Discount": {
+                                            "type": "object",
+                                            "description": "Descuento",
+                                            "properties": {
+                                              "DiscountReason": {
+                                                "type": "string",
+                                                "description": "Concepto por el que se aplica descuento."
+                                              },
+                                              "DiscountRate": {
+                                                "type": "number",
+                                                "description": "Porcentaje a descontar del Total Importe Bruto (TIB)."
+                                              },
+                                              "DiscountAmount": {
+                                                "type": "number",
+                                                "description": "Importe a descontar sobre el TIB."
+                                              }
+                                            },
+                                            "required": [
+                                              "DiscountReason",
+                                              "DiscountAmount"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "Charges": {
+                                      "type": "array",
+                                      "minItems": 1,
+                                      "description": "cargos",
+                                      "items": [
+                                        {
+                                          "Charge": {
+                                            "type": "object",
+                                            "description": "cargo",
+                                            "properties": {
+                                              "ChargeReason": {
+                                                "type": "string",
+                                                "description": "Concepto por el que se aplica el cargo.",
+                                                "maxLength": 2500
+                                              },
+                                              "ChargeRate": {
+                                                "type": "number",
+                                                "description": "Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan."
+                                              },
+                                              "ChargeAmount": {
+                                                "type": "number",
+                                                "description": "Importe a cargar sobre el TIB."
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "GrossAmount": {
+                                      "type": "number",
+                                      "description": "Importe bruto."
+                                    },
+                                    "TaxesOutputs": {
+                                      "type": "array",
+                                      "minItems": 1,
+                                      "description": "Impuestos repercutidos. Es una secuencia de elementos, cada uno de los cuales contiene la informacion de un impuesto repercutido.",
+                                      "items": [
+                                        {
+                                          "Tax": {
+                                            "type": "object",
+                                            "description": "Impuesto.",
+                                            "properties": {
+                                              "TaxTypeCode": {
+                                                "type": "string",
+                                                "description": "Identificador del impuesto por el que se tributa. Para mas informacion, lee la documentacion."
+                                              },
+                                              "TaxRate": {
+                                                "type": "number",
+                                                "description": "Tipo impositivo. Para mas informacion, lee la documentacion."
+                                              },
+                                              "TaxableBase": {
+                                                "type": "object",
+                                                "description": "Base imponible. La legislacion del impuesto correspondiente determina como se calcula la base imponible.",
+                                                "properties": {
+                                                  "TotalAmount": {
+                                                    "type": "number",
+                                                    "description": "Importe en la moneda original de la facturacion. Para mas informacion, lee la documentacion."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "TotalAmount"
+                                                ]
+                                              },
+                                              "TaxAmount": {
+                                                "type": "object",
+                                                "description": "Cuota. La legislacion del impuesto correspondiente determina como se calcula la base imponible.",
+                                                "properties": {
+                                                  "TotalAmount": {
+                                                    "type": "number",
+                                                    "description": "Importe en la moneda original de la facturacion. Para mas informacion, lee la documentacion."
+                                                  }
+                                                },
+                                                "required": [
+                                                  "TotalAmount"
+                                                ]
+                                              }
+                                            },
+                                            "required": [
+                                              "TaxTypeCode",
+                                              "TaxRate",
+                                              "TaxableBase"
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "LineItemPeriod": {
+                                      "type": "object",
+                                      "description": "Informacion sobre el periodo de prestacion de un servicio.",
+                                      "properties": {
+                                        "StartDate": {
+                                          "type": "string",
+                                          "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                        },
+                                        "EndDate": {
+                                          "type": "string",
+                                          "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                        }
+                                      },
+                                      "required": [
+                                        "StartDate",
+                                        "EndDate"
+                                      ]
+                                    },
+                                    "ArticleCode": {
+                                      "type": "string",
+                                      "description": "Codigo de articulo.",
+                                      "maxLength": 20
+                                    }
+                                  },
+                                  "required": [
+                                    "ItemDescription",
+                                    "Quantity",
+                                    "UnitPriceWithoutTax",
+                                    "TotalCost",
+                                    "GrossAmount",
+                                    "TaxesOutputs"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "InvoiceLine"
+                              ]
+                            }
+                          ]
+                        },
+                        "PaymentDetails": {
+                          "type": "array",
+                          "minItems": 1,
+                          "description": "Datos de pago.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "Installment": {
+                                  "type": "object",
+                                  "description": "Vencimiento.",
+                                  "properties": {
+                                    "InstallmentDueDate": {
+                                      "type": "string",
+                                      "description": "Fechas en las que se deben atender los pagos. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                    },
+                                    "InstallmentAmount": {
+                                      "type": "number",
+                                      "description": "Importe a satisfacer en cada plazo. Siempre con dos decimales."
+                                    },
+                                    "PaymentMeans": {
+                                      "type": "string",
+                                      "description": "Cada vencimiento/importe podra tener un medio de pago concreto."
+                                    },
+                                    "AccountToBeCredited": {
+                                      "type": "object",
+                                      "description": "Cuenta de abono. Unico formato admitido. Cuando la forma de pago sea transferencia este dato sera obligatorio.",
+                                      "properties": {
+                                        "IBAN": {
+                                          "type": "string",
+                                          "description": "IBAN. Unico formato admitido para identificar la cuenta. (Recomendado)"
+                                        },
+                                        "AccountNumber": {
+                                          "type": "string",
+                                          "description": "Numero de cuenta"
+                                        },
+
+                                        "BankCode": {
+                                          "type": "string",
+                                          "description": "Codigo de la entidad financiera.",
+                                          "maxLength": 60
+                                        },
+                                        "BIC": {
+                                          "type": "string",
+                                          "description": "Codigo SWIFT. Sera obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
+                                          "minLength": 11,
+                                          "maxLength": 11
+                                        }
+                                      },
+                                      "required": [
+                                        "oneOf"
+                                      ]
+                                    },
+                                    "AccountToBeDebited": {
+                                      "type": "object",
+                                      "description": "Cuenta de cargo. Unico formato admitido. Cuando la forma de pago sea transferencia este dato sera obligatorio.",
+                                      "properties": {
+                                        "IBAN": {
+                                          "type": "string",
+                                          "description": "IBAN. Unico formato admitido para identificar la cuenta. (Recomendado)"
+                                        },
+                                        "AccountNumber": {
+                                          "type": "string",
+                                          "description": "Numero de cuenta"
+                                        },
+                                        "BankCode": {
+                                          "type": "string",
+                                          "description": "Codigo de la entidad financiera.",
+                                          "maxLength": 60
+                                        },
+                                        "BIC": {
+                                          "type": "string",
+                                          "description": "Codigo SWIFT. Sera obligatorio rellenar las 11 posiciones, utilizando los caracteres XXX cuando no se informe de la sucursal.",
+                                          "minLength": 11,
+                                          "maxLength": 11
+                                        }
+                                      },
+                                      "required": [
+                                        "oneOf"
+                                      ]
+                                    }
+                                    ,
+                                    "PaymentReconciliationReference": {
+                                      "type": "string",
+                                      "description": "Referencia expresa del pago. Dato que precisa el Emisor para conciliar los pagos con cada factura.",
+                                      "maxLength": 60
+                                    }
+                                  },
+                                  "required": [
+                                    "InstallmentDueDate",
+                                    "InstallmentAmount",
+                                    "PaymentMeans",
+                                    "BankCode"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "Installment"
+                              ]
+                            }
+                          ]
+                        },
+                        "LegalLiterals": {
+                          "type": "array",
+                          "description": "Literales legales.",
+                          "items": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "LegalReference": {
+                                  "type": "string",
+                                  "description": "Textos literales que deben figurar obligatoriamente en determinadas facturas. Para mas informacion, leer la documentacion.",
+                                  "maxLength": 250
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "AdditionalData": {
+                          "type": "object",
+                          "description": "Datos adicionales.",
+                          "properties": {
+                            "RelatedDocuments": {
+                              "type": "array",
+                              "minItems": 1,
+                              "description": "Documentos asociados. Identificacion de documentos Emisor / Receptor.",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "Attachment": {
+                                      "type": "object",
+                                      "description": "Documento adjunto. Para mas informacion, leer la documentacion.",
+                                      "properties": {
+                                        "AttachmentCompressionAlgorithm": {
+                                          "type": "string",
+                                          "description": "Documento usado para comprimir el documento adjunto."
+                                        },
+                                        "AttachmentFormat": {
+                                          "type": "string",
+                                          "description": "Formato del documento adjunto."
+                                        },
+                                        "AttachmentEncoding": {
+                                          "type": "string",
+                                          "description": "Algoritmo usado para codificar el documento adjunto."
+                                        },
+                                        "AttachmentDescription": {
+                                          "type": "string",
+                                          "description": "Descripcion del documento.",
+                                          "maxLength": 2500
+                                        },
+                                        "AttachmentData": {
+                                          "type": "string",
+                                          "description": "Stream de datos del documento adjunto."
+                                        }
+                                      },
+                                      "required": [
+                                        "AttachmentFormat",
+                                        "AttachmentData"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "Extensions": {
+                              "type": "object",
+                              "description": "Extensiones. Podra incorporarse nuevas definiciones estructuradas cuando sean de interÃ©s conjunto para emisores y receptores, y no estÃ©n ya definidas en el esquema de la factura.",
+                              "properties": {
+                                "InvoiceType": {
+                                  "type": "string",
+                                  "description": "Tipo de factura"
+                                },
+                                "OrigenEmision": {
+                                  "type": "string",
+                                  "description": "Origen de la factura"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "InvoiceHeader",
+                        "InvoiceIssueData",
+                        "TaxesOutputs",
+                        "InvoiceTotals",
+                        "Items"
+                      ]
+                    }
+                  ]
+                
+                }
+              },
+              "required": [
+                "Parties",
+                "Invoice"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "FileHeader",
+        "Invoices"
+      ]
+    }
+  },
+  "required": [
+    "FacturaCyC"
+  ]
+}

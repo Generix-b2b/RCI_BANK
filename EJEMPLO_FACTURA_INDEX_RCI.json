@@ -31,7 +31,7 @@
           },
           "ContactDetails": {
             "Telephone": "+34 12345678",
-            "TeleFax": "+34 12345678",
+            "Telephone2": "+34 12345678",
             "WebAddress": "http://www.ThirdParty.com/",
             "ElectronicMail": "electronicMail@thirdparty.com",
             "ContactPersons": "Contacto Third Party"
@@ -92,7 +92,7 @@
               },
               "ContactDetails": {
                 "Telephone": "+34 12345678",
-                "TeleFax": "+34 12345678",
+                "Telephone2": "+34 12345678",
                 "WebAddress": "http://www.SellerParty.com/",
                 "ElectronicMail": "electronicMail@sellerparty.com",
                 "ContactPersons": "Contacto Seller Party"
@@ -131,7 +131,7 @@
               },
               "ContactDetails": {
                 "Telephone": "+34 12345678",
-                "TeleFax": "+34 12345678",
+                "Telephone2": "+34 12345678",
                 "WebAddress": "http://www.BuyerParty.com/",
                 "ElectronicMail": "electronicMail@buyerparty.com",
                 "ContactPersons": "Contacto Buyer Party"
@@ -358,7 +358,8 @@
                 }
               ],
               "Extensions": {
-                "InvoiceType": "INVOICTYPE"
+                "InvoiceType": "INVOICTYPE",
+                "HerramientaOrigen": ""
               }
             }
           }

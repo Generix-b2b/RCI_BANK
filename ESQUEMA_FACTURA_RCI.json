@@ -133,7 +133,7 @@
                           "description": "Direccion. Tipo de via, nombre, numero, piso...",
                           "maxLength": 80
                         },
-                                "AddressLine": {
+                                "AdditionalAddress": {
                                   "type": "string",
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
@@ -359,7 +359,7 @@
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
                                 },
-                                "AddressLine": {
+                                "AdditionalAddress": {
                                   "type": "string",
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
@@ -469,7 +469,7 @@
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
                                 },
-                                "AddressLine": {
+                                "AdditionalAddress": {
                                   "type": "string",
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
@@ -613,7 +613,7 @@
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
                                 },
-                                "AddressLine": {
+                                "AdditionalAddress": {
                                   "type": "string",
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
@@ -676,7 +676,7 @@
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80
                                 },
-                                "AddressLine": {
+                                "AdditionalAddress": {
                                   "type": "string",
                                   "description": "Direccion. Tipo de via, nombre, numero, piso...",
                                   "maxLength": 80

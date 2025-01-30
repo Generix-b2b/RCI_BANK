@@ -359,7 +359,7 @@
               ],
               "Extensions": {
                 "InvoiceType": "INVOICTYPE",
-                "HerramientaOrigen": ""
+                "OrigenEmision": ""
               }
             }
           }

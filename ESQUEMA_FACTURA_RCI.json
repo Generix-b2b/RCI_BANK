@@ -852,7 +852,7 @@
                                 },
                                 "CorrectionMethodDescription": {
                                   "type": "string",
-                                  "description": "Descripcion del criterio asociada al codigo indicado en el campo anterior / '01' - Rectificacion modelo integro. '02' - Rectificacion modelo por diferencias. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria'.",
+                                  "description": "Descripcion del criterio asociada al codigo indicado en el campo anterior / '01' - Rectificacion modelo integro. '02' - Rectificacion modelo por diferencias. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
                                   "enum": [
                                     "Rectificacion modelo integro",
                                     "Rectificacion modelo por diferencias.",

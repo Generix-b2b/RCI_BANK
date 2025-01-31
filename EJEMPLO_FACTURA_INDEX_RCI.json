@@ -19,7 +19,7 @@
             "Folio": "343",
             "Section": "3a",
             "Volume": "5895",
-            "additionalRegistrationData": ""
+            "AdditionalRegistrationData": ""
           },
           "AddressInSpain": {
             "Address": "Calle Third Party",
@@ -150,19 +150,19 @@
                 "ReasonCode": "12",
                 "ReasonDescription": "NÃºmero de la factura",
                 "TaxPeriod": {
-                  "StartDate": "2024-10-03T23:12:03",
-                  "EndDate": "2024-10-03T23:12:03"
+                  "StartDate": "2024-10-03T23:59:59",
+                  "EndDate": "2024-10-03T23:59:59"
                 },
                 "CorrectionMethod": "01",
-                "CorrectionMethodDescription": "01",
-                "InvoiceIssueDate": "2024-10-03T23:12:03"
+                "CorrectionMethodDescription": "Rectificación modelo íntegro",
+                "InvoiceIssueDate": "2024-10-03T23:59:59"
               }
             },
             "InvoiceIssueData": {
-              "IssueDate": "2024-10-03T23:12:03",
+              "IssueDate": "2024-10-03T23:59:59",
               "InvoicingPeriod": {
-                "StartDate": "2024-10-03T23:12:03",
-                "EndDate": "2024-11-03T23:12:03"
+                "StartDate": "2024-10-03T23:59:59",
+                "EndDate": "2024-11-03T23:59:59"
               },
               "InvoiceCurrencyCode": "EUR",
               "TaxCurrencyCode": "EUR",
@@ -217,7 +217,7 @@
                     {
                       "DeliveryNote": {
                         "DeliveryNoteNumber": "1234567",
-                        "DeliveryNoteDate": "2024-11-03T23:12:03"
+                        "DeliveryNoteDate": "2024-11-03T23:59:59"
                       }
                     }
                   ],
@@ -260,8 +260,8 @@
                     }
                   ],
                   "LineItemPeriod": {
-                    "StartDate": "2024-11-03T23:12:03",
-                    "EndDate": "2024-11-10T23:12:03"
+                    "StartDate": "2024-11-03T23:59:59",
+                    "EndDate": "2024-11-10T23:59:59"
                   },
                   "ArticleCode": "12345"
                 }
@@ -275,7 +275,7 @@
                     {
                       "DeliveryNote": {
                         "DeliveryNoteNumber": "1234567",
-                        "DeliveryNoteDate": "2024-11-03T23:12:03"
+                        "DeliveryNoteDate": "2024-11-03T23:59:59"
                       }
                     }
                   ],
@@ -318,8 +318,8 @@
                     }
                   ],
                   "LineItemPeriod": {
-                    "StartDate": "2024-11-03T23:12:03",
-                    "EndDate": "2024-11-10T23:12:03"
+                    "StartDate": "2024-11-03T23:59:59",
+                    "EndDate": "2024-11-10T23:59:59"
                   },
                   "ArticleCode": "12345"
                 }
@@ -328,7 +328,7 @@
             "PaymentDetails": [
               {
                 "Installment": {
-                  "InstallmentDueDate": "2024-11-03T23:12:03",
+                  "InstallmentDueDate": "2024-11-03T23:59:59",
                   "InstallmentAmount": 7983.25,
                   "PaymentMeans": "04",
                   "AccountToBeCredited": {
@@ -337,7 +337,6 @@
                     "BankCode": "ABCD",
                     "BIC": "ES12 1234 1234 12 1234567890"
                   },
-                  "CollectionAdditionalInformation": "Lorem Ipsum",
                   "PaymentReconciliationReference": "Lorem Ipsum"
                 }
               }

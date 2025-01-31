@@ -133,15 +133,15 @@
                           "description": "Direccion. Tipo de via, nombre, numero, piso...",
                           "maxLength": 80
                         },
-                                "AdditionalAddress": {
-                                  "type": "string",
-                                  "description": "Direccion. Tipo de via, nombre, numero, piso...",
-                                  "maxLength": 80
-                                },
+                        "AdditionalAddress": {
+                          "type": "string",
+                          "description": "Direccion. Tipo de via, nombre, numero, piso...",
+                          "maxLength": 80
+                        },
                         "PostCode": {
                           "type": "string",
                           "description": "Codigo postal asignado por correos.",
-                          "maxLength": 5
+                          "maxLength": 10
                         },
                         "Town": {
                           "type": "string",
@@ -367,7 +367,7 @@
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Codigo postal asignado por correos.",
-                                  "maxLength": 5
+                                  "maxLength": 10
                                 },
                                 "Town": {
                                   "type": "string",
@@ -477,7 +477,7 @@
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Codigo postal asignado por correos.",
-                                  "maxLength": 5
+                                  "maxLength": 10
                                 },
                                 "Town": {
                                   "type": "string",
@@ -621,7 +621,7 @@
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Codigo postal asignado por correos.",
-                                  "maxLength": 5
+                                  "maxLength": 10
                                 },
                                 "Town": {
                                   "type": "string",
@@ -684,7 +684,7 @@
                                 "PostCode": {
                                   "type": "string",
                                   "description": "Codigo postal asignado por correos.",
-                                  "maxLength": 5
+                                  "maxLength": 10
                                 },
                                 "Town": {
                                   "type": "string",
@@ -781,7 +781,7 @@
                             },
                             "InvoiceDocumentType": {
                               "type": "string",
-                              "description": "Tipo documento Factura / (FC) = Factura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura(DEPRECATED)",
+                              "description": "Tipo documento Factura / (FC) = Factura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura (DEPRECATED)",
                               "enum": [
                                 "FC",
                                 "FA",
@@ -824,15 +824,15 @@
                                 },
                                 "TaxPeriod": {
                                   "type": "object",
-                                  "description": "Periodo natural en el que se produjeron los efectos fiscales de la factura a rectificar; y, por lo tanto, se tributo, y que ahora, es ojeto de rectificacion. ISO 8601:2004.",
+                                  "description": "Periodo natural en el que se produjeron los efectos fiscales de la factura a rectificar; y, por lo tanto, se tributo, y que ahora, es objeto de rectificacion. ISO 8601:2004.",
                                   "properties": {
                                     "StartDate": {
                                       "type": "string",
-                                      "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                      "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                     },
                                     "EndDate": {
                                       "type": "string",
-                                      "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                      "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                     }
                                   },
                                   "required": [
@@ -867,7 +867,7 @@
                                 },
                                 "InvoiceIssueDate": {
                                   "type": "string",
-                                  "description": "Fecha de expedicion de la factura rectificada. Valor obligatorio en el supuesto de que la etiqueta CorrectionMethod tome los valores '01' o '02'. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                  "description": "Fecha de expedicion de la factura rectificada. Valor obligatorio en el supuesto de que la etiqueta CorrectionMethod tome los valores '01' o '02'. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                 }
                               },
                               "required": [
@@ -891,7 +891,7 @@
                           "properties": {
                             "IssueDate": {
                               "type": "string",
-                              "description": "Fecha de expedicion. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                              "description": "Fecha de expedicion. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                             },
                             "InvoicingPeriod": {
                               "type": "object",
@@ -899,11 +899,11 @@
                               "properties": {
                                 "StartDate": {
                                   "type": "string",
-                                  "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                  "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                 },
                                 "EndDate": {
                                   "type": "string",
-                                  "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                  "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                 }
                               },
                               "required": [
@@ -1151,7 +1151,7 @@
                                                 },
                                                 "DeliveryNoteDate": {
                                                   "type": "string",
-                                                  "description": "Fecha del albaran. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                                  "description": "Fecha del albaran. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                                 }
                                               },
                                               "required": [
@@ -1306,11 +1306,11 @@
                                       "properties": {
                                         "StartDate": {
                                           "type": "string",
-                                          "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                          "description": "Fecha de inicio. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                         },
                                         "EndDate": {
                                           "type": "string",
-                                          "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                          "description": "Fecha final. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                         }
                                       },
                                       "required": [
@@ -1354,7 +1354,7 @@
                                   "properties": {
                                     "InstallmentDueDate": {
                                       "type": "string",
-                                      "description": "Fechas en las que se deben atender los pagos. date yyyy-MM-ddThh:mm:ss (2024-11-03T24:12:03)"
+                                      "description": "Fechas en las que se deben atender los pagos. date yyyy-MM-ddThh:mm:ss (2024-11-03T23:59:59)"
                                     },
                                     "InstallmentAmount": {
                                       "type": "number",
@@ -1388,10 +1388,7 @@
                                           "minLength": 11,
                                           "maxLength": 11
                                         }
-                                      },
-                                      "required": [
-                                        "oneOf"
-                                      ]
+                                      }
                                     },
                                     "AccountToBeDebited": {
                                       "type": "object",
@@ -1416,10 +1413,7 @@
                                           "minLength": 11,
                                           "maxLength": 11
                                         }
-                                      },
-                                      "required": [
-                                        "oneOf"
-                                      ]
+                                      }
                                     }
                                     ,
                                     "PaymentReconciliationReference": {

@@ -24,7 +24,7 @@
           "AddressInSpain": {
             "Address": "Calle Third Party",
             "AdditionalAddress": "Edificio Portal Puerta",
-            "PostCode": "12345",
+            "PostCode": "1234567890",
             "Town": "Ciudad Third Party",
             "Province": "Provincia TP",
             "CountryCode": "ESP"
@@ -63,7 +63,7 @@
               "AddressInSpain": {
                 "Address": "Calle del Centro Seller",
                 "AdditionalAddress": "Edificio Portal Puerta",
-                "PostCode": "12345",
+                "PostCode": "1234567890",
                 "Town": "Ciudad Centro Seller",
                 "Province": "Provincia ACS",
                 "CountryCode": "ESP"
@@ -85,7 +85,7 @@
               "AddressInSpain": {
                 "Address": "Calle Seller Party",
                 "AdditionalAddress": "Edificio Portal Puerta",
-                "PostCode": "12345",
+                "PostCode": "1234567890",
                 "Town": "Ciudad Seller Party",
                 "Province": "Provincia SP",
                 "CountryCode": "ESP"
@@ -112,7 +112,7 @@
               "AddressInSpain": {
                 "Address": "Calle del Centro Buyer",
                 "AdditionalAddress": "Edificio Portal Puerta",
-                "PostCode": "12345",
+                "PostCode": "1234567890",
                 "Town": "Ciudad Centro Buyer",
                 "Province": "Provincia ACB",
                 "CountryCode": "ESP"
@@ -124,7 +124,7 @@
               "AddressInSpain": {
                 "Address": "Calle Buyer Party",
                 "AdditionalAddress": "Edificio Portal Puerta",
-                "PostCode": "12345",
+                "PostCode": "1234567890",
                 "Town": "Ciudad Buyer Party",
                 "Province": "Provincia BP",
                 "CountryCode": "ESP"

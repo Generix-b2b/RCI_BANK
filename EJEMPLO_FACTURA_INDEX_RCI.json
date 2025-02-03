@@ -21,7 +21,7 @@
             "Volume": "5895",
             "AdditionalRegistrationData": ""
           },
-          "AddressInSpain": {
+          "Address": {
             "Address": "Calle Third Party",
             "AdditionalAddress": "Edificio Portal Puerta",
             "PostCode": "1234567890",
@@ -60,7 +60,7 @@
             "AdministrativeCentre": {
               "CentreCode": "S12345678",
               "RoleTypeCode": "01",
-              "AddressInSpain": {
+              "Address": {
                 "Address": "Calle del Centro Seller",
                 "AdditionalAddress": "Edificio Portal Puerta",
                 "PostCode": "1234567890",
@@ -82,7 +82,7 @@
                 "Volume": "5895",
                 "AdditionalRegistrationData": ""
               },
-              "AddressInSpain": {
+              "Address": {
                 "Address": "Calle Seller Party",
                 "AdditionalAddress": "Edificio Portal Puerta",
                 "PostCode": "1234567890",
@@ -109,7 +109,7 @@
             "AdministrativeCentre": {
               "CentreCode": "B12345678",
               "RoleTypeCode": "01",
-              "AddressInSpain": {
+              "Address": {
                 "Address": "Calle del Centro Buyer",
                 "AdditionalAddress": "Edificio Portal Puerta",
                 "PostCode": "1234567890",
@@ -121,7 +121,7 @@
             },
             "LegalEntity": {
               "CorporateName": "Buyer Party",
-              "AddressInSpain": {
+              "Address": {
                 "Address": "Calle Buyer Party",
                 "AdditionalAddress": "Edificio Portal Puerta",
                 "PostCode": "1234567890",

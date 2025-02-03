@@ -175,12 +175,12 @@
                       "properties": {
                         "Telephone": {
                           "type": "string",
-                          "description": "Teléfono. Numero de teléfono completo con prefijos del pais.",
+                          "description": "Telefono. Numero de telefono completo con prefijos del pais.",
                           "maxLength": 15
                         },
                         "Telephone2": {
                           "type": "string",
-                          "description": "Fax. Numero de fax completo con prefijos del pais.",
+                          "description": "Segundo numero de telefono.",
                           "maxLength": 15
                         },
                         "WebAddress": {
@@ -511,12 +511,12 @@
                               "properties": {
                                 "Telephone": {
                                   "type": "string",
-                                  "description": "Teléfono. Numero de teléfono completo con prefijos del pais.",
+                                  "description": "Telefono. Numero de telefono completo con prefijos del pais.",
                                   "maxLength": 15
                                 },
                                 "Telephone2": {
                                   "type": "string",
-                                  "description": "Fax. Numero de fax completo con prefijos del pais.",
+                                  "description": "Segundo numero de telefono.",
                                   "maxLength": 15
                                 },
                                 "WebAddress": {
@@ -718,7 +718,7 @@
                               "properties": {
                                 "Telephone": {
                                   "type": "string",
-                                  "description": "Teléfono. Numero de teléfono completo con prefijos del pais.",
+                                  "description": "Telefono. Numero de telefono completo con prefijos del pais.",
                                   "maxLength": 15
                                 },
                                 "Telephone2": {
@@ -816,7 +816,7 @@
                                 },
                                 "ReasonCode": {
                                   "type": "string",
-                                  "description": "Codigo del motivo. Codigo numérico del motivo de rectificacion. '01' a '16' errores segun reglamento RD 1496/2003; '80' a '85' errores segun Artº 80 Ley 37/92 de IVA"
+                                  "description": "Codigo del motivo. Codigo numerico del motivo de rectificacion. '01' a '16' errores segun reglamento RD 1496/2003; '80' a '85' errores segun Artº 80 Ley 37/92 de IVA"
                                 },
                                 "ReasonDescription": {
                                   "type": "string",
@@ -842,7 +842,7 @@
                                 },
                                 "CorrectionMethod": {
                                   "type": "string",
-                                  "description": "Codigo numérico que identifica el criterio empleado en cada caso para una rectificacion / '01' - Se reflejan todos los detalles a rectificar de la factura original. '02' - Solo se anotan los detalles ya rectificados. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
+                                  "description": "Codigo numerico que identifica el criterio empleado en cada caso para una rectificacion / '01' - Se reflejan todos los detalles a rectificar de la factura original. '02' - Solo se anotan los detalles ya rectificados. '03' - Rectificacion por descuento por volumen de operaciones durante un periodo. '04' - Autorizadas por la Agencia Tributaria.",
                                   "enum": [
                                     "01",
                                     "02",
@@ -1501,7 +1501,7 @@
                             },
                             "Extensions": {
                               "type": "object",
-                              "description": "Extensiones. Podra incorporarse nuevas definiciones estructuradas cuando sean de interés conjunto para emisores y receptores, y no estén ya definidas en el esquema de la factura.",
+                              "description": "Extensiones. Podra incorporarse nuevas definiciones estructuradas cuando sean de interes conjunto para emisores y receptores, y no esten ya definidas en el esquema de la factura.",
                               "properties": {
                                 "InvoiceType": {
                                   "type": "string",

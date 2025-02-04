@@ -781,7 +781,7 @@
                             },
                             "InvoiceDocumentType": {
                               "type": "string",
-                              "description": "Tipo documento Factura / (FC) = Factura completa u ordinaria, (FA) = Factura simplificada, (AF) = Antifactura (DEPRECATED)",
+                              "description": "Tipo documento Factura / (FC) = Factura completa u ordinaria, (FA) = Factura simplificada, (AF) = Autofactura (DEPRECATED)",
                               "enum": [
                                 "FC",
                                 "FA",

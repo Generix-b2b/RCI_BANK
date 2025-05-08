@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "documentType": {
+            "type": "string",
+            "description": "Tipo de documento",
+            "enum": ["USER", "PARTNER", "INVOICE", "PERIMETER"]
+        },                        
+        "response": {
+            "type": "array",
+            "items": {
+                "uuid": {
+                    "type": "string",
+                    "description": "Referencia que dependera del tipo. (Email, DNI/CIF, Identificador de lote)"
+                },
+                "timestamp": {
+                    "type": "string",
+                    "description": "Registro de fecha y hora en la que se generó el error. AAAAMMDDHHMMSS",
+                    "pattern": "^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12]\\d|3[01])([01]\\d|2[0-3])[0-5]\\d[0-5]\\d$"
+                },
+                "status":{
+                    "type": "string",
+                    "description": "Estado del porceso",
+                    "enum": ["OK", "ERROR"]
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                      "error": {
+                        "type": "string",
+                        "description": "Código de error"
+                      },
+                      "receivedvalue": {
+                        "type": "string",
+                        "description": "Valor recibido"
+                      },
+                      "expectedvalue": {
+                        "type": "string",
+                        "description": "Valor recibido"
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "Mensaje de error"
+                      }
+                    },
+                    "required": [
+                        "error",
+                        "receivedValue",
+                        "message"
+                    ]
+                }
+            },
+            "required": [
+                "uuid",
+                "timestamp",
+                "status"                
+            ]
+        }
+    },
+    "required": [
+        "DocumentType"
+    ]
+}
